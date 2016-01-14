@@ -25,6 +25,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bower-rails'
 gem 'angular-rails-templates'
 
+# There's a regression in newer Sprockets that breaks angular-rails-template
+gem 'sprockets', '2.12.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
