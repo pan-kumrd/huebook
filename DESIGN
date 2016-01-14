@@ -1,0 +1,51 @@
+Basic models:
+
+ * users
+   - id
+   - name
+   - lastname
+   - email
+   - password
+   - profile_pic
+   - bio
+ 
+ * friendship
+   - user_id
+   - friend_id
+   - state
+
+ * posts
+   - id
+   - orig_post_id  // for sharing posts
+   - author_id
+   - text
+   - private
+   - attachment_type // website, ..?
+   - attachment_url
+   - created_dt
+   - edited_dt
+   
+ * posts_likes
+   - user_id
+   - post_id
+ 
+ * comments
+   - id
+   - post_id
+   - user_id
+   - text
+   - created_dt
+   - edited_dt
+   
+  * comments_likes
+   - user_id
+   - comment_id
+ 
+  * notifications
+   - id
+   - user_id
+   - actor_id
+   - type
+   - post_id
+   - comment_id
+   - created_dt
