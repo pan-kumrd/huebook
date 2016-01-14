@@ -29,6 +29,9 @@ gem 'sprockets', '2.12.3'
 gem 'devise'
 gem 'cancancan'
 
+# File attachments (profile pics)
+gem 'paperclip'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
