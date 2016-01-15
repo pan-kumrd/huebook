@@ -17,7 +17,7 @@ Basic models:
  * posts
    - id
    - orig_post_id  // for sharing posts
-   - author_id
+   - user_id
    - text
    - private
    - attachment_type // website, ..?

@@ -12,3 +12,5 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( index.css )
 Rails.application.config.assets.precompile += %w( index.js )
+Rails.application.config.assets.precompile += %w( huebook.css )
+Rails.application.config.assets.precompile += %w( huebook.js )

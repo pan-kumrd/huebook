@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  has_many :posts, as: :wall
+  has_many :events, through: :event_rsvps
+
 end
