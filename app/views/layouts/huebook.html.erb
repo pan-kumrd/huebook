@@ -8,8 +8,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div ng-view>
-
+<div id="huebook">
+  <div id="top-pane">
+    <div id="top-pane-content" class="clearfix">
+      <%= link_to 'H', app_path + '#/', id: 'hblogo' %>
+      <div id="hbsearch" class="input-group">
+        <input type="text" class="form-control" id="search" placeholder="Search Huebook...">
+        <div class="input-group-addon btn btn-default">
+          <span class="glyphicon glyphicon-search"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="body">
+    <div id="content" ng-view class="clearfix">
+    </div>
+  </div>
+  <div id="footer">
+    <div id="footer-content">
+      <a href="http://giphy.com/gifs/1333qui7ODRzG0/html5" target="_blank"> Huehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehuehue
+      </a>
+    </div>
+  </div>
 </div>
 </body>
 </html>

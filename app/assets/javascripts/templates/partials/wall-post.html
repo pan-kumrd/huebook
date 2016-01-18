@@ -1,0 +1,17 @@
+<div class="wall-post panel panel-default" id="wall-post-{{ post.id }}">
+  <div class="panel-heading">
+    <img src="{{ post.user.profile_picture_file_name }}" />
+    <a href="#user/{{ post.user.id }}">{{ post.user.first_name }} {{ post.user.last_name }}</a>
+    on {{ post.created_at }}
+  </div>
+  <div class="panel-body">
+    {{ post.text }}
+  </div>
+  <div class="panel-footer">
+    <a ng-click="like(post.id)" ng-if="!post.user_liked" class="btn btn-default btn-sm">Hue</a>
+    <a ng-click="unlike(post.id)" ng-if="post.user_liked" class="btn btn-default btn-sm">Unhue</a>
+    <a class="btn">({{post.likes_count}})</a> |
+    <a ng-click="share(post.id)" class="btn btn-default btn-sm">Share</a>
+    <a class="grey">({{post.shares_count}})</span>
+  </div>
+</div>

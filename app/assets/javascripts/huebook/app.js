@@ -2,6 +2,8 @@ var huebook = angular.module('huebook', [
     'templates',
     'ngRoute',
     'controllers',
+    'services',
+    'directives',
 ])
 
 huebook.config(['$routeProvider',
@@ -16,9 +18,6 @@ huebook.config(['$routeProvider',
       });
   }]);
 
-var controllers = angular.module('controllers', [])
-
-controllers.controller("WallController", [ '$scope',
-    function($scope) {
-
-    }]);
+angular.module('controllers', []);
+angular.module('services', []);
+angular.module('directives', []);

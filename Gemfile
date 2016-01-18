@@ -36,6 +36,9 @@ gem 'paperclip'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Serializers
+gem 'active_model_serializers'
+
 
 group :development, :tests do
   gem 'exception_notification'

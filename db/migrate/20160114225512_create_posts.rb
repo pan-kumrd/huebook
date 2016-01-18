@@ -10,11 +10,14 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :attachment_type,   null: true
       t.string  :attacment_url,     null: true
 
+      t.integer :likes_count,       null: false, default: 0
+      t.integer :shares_count,      null: false, default: 0
+
       t.timestamps null: false
     end
 
     add_reference :posts, :user, index: true, foreign_key: true
-    add_reference :posts, :orig_post_id, references: :posts, index: true, foreign_key: true, null: true
+    add_reference :posts, :orig_post, references: :posts, index: true, foreign_key: true, null: true
     add_index :posts, [ :wall_id, :wall_type ], unique: false
   end
 end

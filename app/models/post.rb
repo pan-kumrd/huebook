@@ -5,4 +5,12 @@ class Post < ActiveRecord::Base
     has_many :shares, class_name: "Post", foreign_key: "orig_post_id"
     has_many :comments
     has_many :likes, as: :object
+
+    def self.user_liked()
+        joins(:likes).where(likes: { user_id: self.user.id }).exists?
+    end
+
+    def user_liked()
+        likes.where(user_id: self.user.id).exists?
+    end
 end

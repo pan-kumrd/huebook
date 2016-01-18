@@ -1,0 +1,12 @@
+<div ng-controller="UserSidePaneController">
+  <a ng-href="profile/{{user.id}}" class="user-name">{{user.name}}</a>
+
+  <img src="{{user.profile_picture}}" alt="{{user.name}}" />
+
+  <button class="btn {{ notifications.count == 0 ? 'btn-default' : 'btn-warning' }} hb-button-wide" type="button">
+    Notifications <span class="badge">{{notifications.count}}</span>
+  </button>
+  <button class="btn {{ messages.count == 0 ? 'btn-defalut' : 'btn-warning' }} hb-button-wide" type="button">
+    Messages <span class="badge">{{messages.count}}</span>
+  </button>
+</div>
