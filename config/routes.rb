@@ -15,6 +15,11 @@ Rails.application.routes.draw do
         post 'like'
         post 'unlike'
     end
+    resources :comments do
+        get 'likes'
+        post 'like'
+        post 'unlike'
+    end
   end
 
   resource :walls do

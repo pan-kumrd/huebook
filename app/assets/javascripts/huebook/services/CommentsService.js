@@ -1,40 +1,32 @@
 var services = angular.module('services');
-services.factory('posts', [ '$http',
+services.factory('comments', [ '$http',
 function($http) {
     return {
-        getAll: function() {
-            //return the promise directly.
-            return $http.get('/posts.json')
-                        .then(function(result) {
-                            return result.data;
-                        });
-        },
-
         get: function(postId) {
-            return $http.get('/posts/' + postId + '.json')
+            return $http.get('/posts/' + postId + '/comments.json')
                         .then(function(result) {
                             return result.data;
                         });
         },
 
-        like: function(id) {
-            return $http.post('/posts/' + id + '/like.json')
+        like: function(postId, commentId) {
+            return $http.post('/posts/' + postId + '/comments/' + commentId + '/like.json')
                         .then(function(result) {
                             return result.data;
                         });
         },
 
-        unlike: function(id) {
-            return $http.post('/posts/' + id + '/unlike.json')
+        unlike: function(postId, commentId) {
+            return $http.post('/posts/' + postId + '/comments/' + commentId + '/unlike.json')
                         .then(function(result) {
                             return result.data;
                         });
         },
 
-        create: function(data) {
+        create: function(postId, data) {
             return $http({
                             method: 'POST',
-                            url: '/posts.json',
+                            url: '/posts/' + postId + '/comments.json',
                             data: $.param(data),
                             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                         }).then(function(result) {
@@ -42,14 +34,13 @@ function($http) {
                         });
         },
 
-        remove: function(id) {
+        remove: function(postId, commentId) {
             return $http({
                             method: 'DELETE',
-                            url: '/posts/' + id + '.json'
+                            url: '/posts/' + postId + '/comments/' + commentId + '.json'
                         }).then(function(result) {
                             return result.data;
                         });
         }
-
     }
 }]);

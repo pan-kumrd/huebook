@@ -1,4 +1,4 @@
-<div class="wall-post panel panel-default" id="wall-post-{{ post.id }}">
+<div class="wall-post panel panel-default">
   <div class="panel-heading clearfix">
     <div class="pull-left">
       <img ng-src="{{ post.user.profile_picture_file_name | profilePic }}" height="30" />&nbsp;
@@ -11,7 +11,7 @@
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-          <li><a ng-click="remove(post.id)">Remove</a></li>
+          <li><a ng-click="remove()">Remove</a></li>
         </ul>
       </div>
     </div>
@@ -20,13 +20,34 @@
     {{ post.text }}
   </div>
   <div class="panel-footer">
-    <a ng-click="like(post.id)" ng-if="!post.user_liked">Hue</a>
-    <a ng-click="unlike(post.id)" ng-if="post.user_liked">Unhue</a>
-    <small ng-if="post.likes_count == 0">({{post.likes_count}})</small>
-    <a ng-click="showLikes(post.id)" ng-if="post.likes_count > 0"><small>({{post.likes_count}})</small></a>
+    <a ng-click="like()" ng-if="!post.user_liked">Hue</a>
+    <a ng-click="unlike()" ng-if="post.user_liked">Unhue</a>
+    <small ng-if="post.likes_count == 0">({{ post.likes_count }})</small>
+    <a ng-click="showLikes()" ng-if="post.likes_count > 0"><small>({{ post.likes_count }})</small></a>
 
-    <a ng-click="share(post.id)">Share</a>
-    <small ng-if="post.shares_count == 0">({{post.shares_count}})</small>
-    <a ng-click="showShares(post.id)" ng-if="post.shares_count > 0"><small>({{post.shares_count}})</small>
+    <a ng-click="share()">Share</a>
+    <small ng-if="post.shares_count == 0">({{ post.shares_count }})</small>
+    <a ng-click="showShares()" ng-if="post.shares_count > 0"><small>({{ post.shares_count }})</small></a>
+
+    <a ng-click="toggleComments()">Comments</a>
+    <small>({{ post.comments_count }})</small>
+
+    <div id="post-{{ post.id }}-comments" ng-show="commentsVisible">
+        <div class="panel comments-panel">
+          <div class="panel-body">
+            <post-comment ng-repeat="comment in comments track by comment.id" ng-controller="CommentController"></post-comment>
+
+            <div class="panel panel-default hb-new-comment">
+              <div class="panel-heading">New comment</div>
+              <div class="panel-body">
+                <form ng-submit="submitComment()" name="new-comment-form">
+                <textarea id="hb-new-comment-input" name="new-comment-text" ng-model="newCommentData.comment.text"></textarea><br/>
+                <input type="submit" class="btn btn-primary" value="Post" name="new-comment-submit" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 </div>

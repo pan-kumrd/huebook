@@ -12,6 +12,7 @@ class CreatePosts < ActiveRecord::Migration
 
       t.integer :likes_count,       null: false, default: 0
       t.integer :shares_count,      null: false, default: 0
+      t.integer :comments_count,    null: false, default: 0
 
       t.timestamps null: false
     end

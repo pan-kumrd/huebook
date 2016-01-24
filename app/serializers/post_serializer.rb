@@ -11,6 +11,7 @@ class PostSerializer < ActiveModel::Serializer
                :orig_post,
                :likes_count,
                :shares_count,
+               :comments_count,
                :user_liked
 
     has_one :user, serializer: UserReferenceSerializer

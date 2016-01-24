@@ -1,0 +1,28 @@
+<div class="post-comment panel panel-default" id="post-comment-{{ comment.id }}">
+  <div class="panel-heading clearfix">
+    <div class="pull-left">
+      <img ng-src="{{ post.user.profile_picture_file_name | profilePic }}" height="30" />&nbsp;
+      <a href="#user/{{ comment.user.id }}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+      on {{ comment.created_at }}
+    </div>
+    <div class="pull-right">
+      <div class="dropdown">
+        <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a ng-click="remove()">Remove</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    {{ comment.text }}
+  </div>
+  <div class="panel-footer">
+    <a ng-click="like()" ng-if="!comment.user_liked">Hue</a>
+    <a ng-click="unlike()" ng-if="comment.user_liked">Unhue</a>
+    <small ng-if="comment.likes_count == 0">({{ comment.likes_count }})</small>
+    <a ng-click="showLikes()" ng-if="comment.likes_count > 0"><small>({{ comment.likes_count }})</small></a>
+  </div>
+</div>
