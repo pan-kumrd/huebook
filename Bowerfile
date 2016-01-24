@@ -1,3 +1,6 @@
 asset 'angular'
 asset 'angular-route'
+asset 'angular-modal-service'
 asset 'bootstrap-sass-official'
+asset 'bootstrap-dropdown'
+asset 'bootstrap-modal'

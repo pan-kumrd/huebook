@@ -2,8 +2,7 @@ var services = angular.module('services');
 services.factory('users', [ '$http',
 function($http) {
     return {
-        getAll: function() {
-            //return the promise directly.
+        self: function() {
             return $http.get('/users.json')
                         .then(function(result) {
                             return result.data;

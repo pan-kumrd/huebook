@@ -7,6 +7,6 @@ class CreateLikes < ActiveRecord::Migration
     end
 
     add_reference :likes, :user, index: true, foreign_key: true
-    add_index :likes, [ :object_id, :object_type ], unique: true
+    add_index :likes, [ :object_id, :object_type ], unique: false
   end
 end

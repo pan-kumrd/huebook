@@ -4,6 +4,8 @@ var huebook = angular.module('huebook', [
     'controllers',
     'services',
     'directives',
+    'filters',
+    'angularModalService'
 ])
 
 huebook.config(['$routeProvider',
@@ -21,3 +23,4 @@ huebook.config(['$routeProvider',
 angular.module('controllers', []);
 angular.module('services', []);
 angular.module('directives', []);
+angular.module('filters', []);

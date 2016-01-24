@@ -3,7 +3,7 @@
   <div class="welcome-box">
     <h1>Welcome to Huebook</h1>
     <br>
-    <a href="register" class="btn btn-default">Sign up</a>
-    <a href="login" class="btn btn-default">Sign in</a>
+    <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-default' %>
+    <%= link_to "Sign in", new_user_session_path, class: 'btn btn-default' %>
   </div>
 </div

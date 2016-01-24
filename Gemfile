@@ -39,6 +39,9 @@ gem 'paperclip'
 # Serializers
 gem 'active_model_serializers'
 
+# Extends activerecord, support for views
+gem 'schema_plus_views'
+
 
 group :development, :tests do
   gem 'exception_notification'

@@ -3,6 +3,9 @@
   "dependencies": {
     "angular": "latest",
     "angular-route": "latest",
-    "bootstrap-sass-official": "latest"
+    "angular-modal-service": "latest",
+    "bootstrap-sass-official": "latest",
+    "bootstrap-dropdown": "latest",
+    "bootstrap-modal": "latest"
   }
 }

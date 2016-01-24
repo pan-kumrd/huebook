@@ -1,6 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
     attributes :id,
-               :user,
                :text,
                :private,
                :wall_id,
@@ -14,7 +13,5 @@ class PostSerializer < ActiveModel::Serializer
                :shares_count,
                :user_liked
 
-    def user
-        UserReferenceSerializer.new(object.user).attributes
-    end
+    has_one :user, serializer: UserReferenceSerializer
 end

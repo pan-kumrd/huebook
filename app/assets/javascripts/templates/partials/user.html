@@ -1,8 +1,8 @@
-<div ng-controller="UserSidePaneController">
-  <a ng-href="profile/{{user.id}}" class="user-name">{{user.name}}</a>
+<div ng-controller="UserSidePaneController" id="hb-user-sidepane">
+  <a ng-href="profile/{{ user.id }}" class="hb-user-name">{{ user.first_name }} {{ user.last_name }}</a>
 
-  <img src="{{user.profile_picture}}" alt="{{user.name}}" />
-
+  <img ng-src="{{ user.profile_picture_file_name | profilePic }}" alt="{{ user.name }}" width="260" />
+  <br/><br/>
   <button class="btn {{ notifications.count == 0 ? 'btn-default' : 'btn-warning' }} hb-button-wide" type="button">
     Notifications <span class="badge">{{notifications.count}}</span>
   </button>

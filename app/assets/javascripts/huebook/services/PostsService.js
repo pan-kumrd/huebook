@@ -22,6 +22,26 @@ function($http) {
                         .then(function(result) {
                             return result.data;
                         });
+        },
+
+        create: function(data) {
+            return $http({
+                            method: 'POST',
+                            url: '/posts.json',
+                            data: $.param(data),
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        }).then(function(result) {
+                            return result.data;
+                        });
+        },
+
+        remove: function(id) {
+            return $http({
+                            method: 'DELETE',
+                            url: '/posts/' + id + '.json'
+                        }).then(function(result) {
+                            return result.data;
+                        });
         }
 
     }

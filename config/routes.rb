@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  get 'users' => 'users#index'
+  get 'users/:id' => 'users#show'
 
   root 'index#welcome'
 
@@ -8,9 +10,16 @@ Rails.application.routes.draw do
 
   resources :posts do
     member do
+        get 'likes'
+        get 'shares'
         post 'like'
         post 'unlike'
     end
+  end
+
+  resource :walls do
+    get '' => 'walls#default'
+    get ':type/:id' => 'walls#show'
   end
 
 
