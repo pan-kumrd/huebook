@@ -8,8 +8,8 @@ function($scope, posts, comments, ModalService) {
     $scope.toggleComments = function() {
         $scope.commentsVisible = !$scope.commentsVisible;
         if ($scope.commentsVisible) {
-            comments.get($scope.post.id).then(function(data) {
-                $scope.comments = data.comments;
+            comments.get($scope.post.id).then(function(resp) {
+                $scope.comments = resp.comments;
             });
         }
     };
@@ -40,20 +40,20 @@ function($scope, posts, comments, ModalService) {
     });
 
     $scope.$on('refreshPost', function(event, args) {
-        posts.get($scope.post.id).then(function(post) {
-            $scope.$emit("updatePost", { post: post.post });
+        posts.get($scope.post.id).then(function(resp) {
+            $scope.$emit("updatePost", { post: resp.post });
         });
     });
 
     $scope.like = function() {
-        posts.like($scope.post.id).then(function(post) {
-            $scope.$emit("updatePost", { post: post.post });
+        posts.like($scope.post.id).then(function(resp) {
+            $scope.$emit("updatePost", { post: resp.post });
         });
     };
 
     $scope.unlike = function() {
-        posts.unlike($scope.post.id).then(function(post) {
-            $scope.$emit("updatePost", { post: post.post });
+        posts.unlike($scope.post.id).then(function(resp) {
+            $scope.$emit("updatePost", { post: resp.post });
         });
     };
 

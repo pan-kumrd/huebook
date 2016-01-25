@@ -13,6 +13,7 @@ class PostSerializer < ActiveModel::Serializer
                :shares_count,
                :comments_count,
                :user_liked
+               :user
 
     has_one :user, serializer: UserReferenceSerializer
 end

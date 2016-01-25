@@ -4,8 +4,8 @@ class CommentSerializer < ActiveModel::Serializer
                :created_at,
                :updated_at,
                :likes_count,
-               :user_liked
-               :user
+               :user_liked,
+               :user,
                :post_id
 
     has_one :user, serializer: UserReferenceSerializer

@@ -1,0 +1,22 @@
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist" id="hb-search-tabs">
+    <li role="presentation" ng-class="currentTab == 'users' ? 'active' : ''">
+      <a ng-click="currentTab = 'users'" role="tab" data-target="hb-search-user">Users</a>
+    </li>
+    <li role="presentation" ng-class="currentTab == 'events' ? 'active' : ''">
+      <a ng-click="currentTab = 'events'" role="tab" data-target="hb-search-events">Events</a>
+    </li>
+    <li role="presentation" ng-class="currentTab == 'posts' ? 'active' : ''">
+      <a ng-click="currentTab = 'posts'" role="tab" data-toggle="hb-search-posts">Posts</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <user-preview ng-repeat="user in users | filter : { is_me: false } track by user.id" ng-show="currentTab == 'users'"></user-preview>
+    <event-preview ng-repeat="event in events track by event.id" ng-show="currentTab == 'events'"></event-preview>
+    <wall-post ng-repeat="post in posts track by post.id" ng-show="currentTab == 'posts'"></wall-post>
+  </div>
+
+</div>

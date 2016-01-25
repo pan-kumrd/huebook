@@ -37,9 +37,7 @@ class CommentsController < ApplicationController
     def likes
         user_ids = Like.where({ object: @comment }).pluck(:user_id)
         users = User.find(user_ids)
-        render json: { object: @post,
-                       users: ActiveModel::ArraySerializer.new(users, each_serializer: UserReferenceSerializer)
-                     }
+        render json: { comment: @comment, users: users }, serializer: CommentLikesSerializer, root: false
     end
 
     # POST /posts/:post_id/comments.json
@@ -51,9 +49,7 @@ class CommentsController < ApplicationController
         post = Post.find(@post_id)
         post.comments_count += 1
         post.save
-        render json: { post: post,
-                       comment: comment
-                     }, serializer: NewCommentSerializer, root: false
+        render json: { post: post, comment: comment }, serializer: NewCommentSerializer, root: false
     end
 
     # DELETE /posts/:post_id/comments/:id.json

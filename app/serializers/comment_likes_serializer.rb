@@ -1,13 +1,13 @@
-class NewCommentSerializer < ActiveModel::Serializer
+class CommentLikesSerializer < ActiveModel::Serializer
     include ActiveModel::Serialization
 
-    has_one :post, serializer: PostSerializer
     has_one :comment, serializer: CommentSerializer
-
-    def post
-        object[:post]
+    has_many :users, serializer: UserReferenceSerializer
+    def users
+        object[:users]
     end
     def comment
         object[:comment]
     end
 end
+ 

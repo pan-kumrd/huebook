@@ -37,7 +37,8 @@ gem 'paperclip'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Serializers
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.9'
+
 
 # Extends activerecord, support for views
 gem 'schema_plus_views'

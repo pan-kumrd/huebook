@@ -49,6 +49,13 @@ function($http) {
                         }).then(function(result) {
                             return result.data;
                         });
+        },
+
+        search: function(query) {
+            return $http.get('/search/posts/' + query + '.json')
+                        .then(function(result) {
+                            return result.data;
+                        });
         }
 
     }

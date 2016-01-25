@@ -144,7 +144,7 @@ body, html {
 }
 
 #hb-user-sidepane {
-    
+
     .hb-user-name {
         display: block;
         text-align: center;
@@ -154,7 +154,7 @@ body, html {
 }
 
 .hb-new-comment {
-    
+
     textarea {
         width: 100%;
     }
@@ -162,4 +162,14 @@ body, html {
     .panel-body {
         text-align: right;
     }
+}
+
+.hb-user-preview {
+
+    cursor: pointer;
+
+    img {
+        margin-right: 20px;
+    }
+    
 }

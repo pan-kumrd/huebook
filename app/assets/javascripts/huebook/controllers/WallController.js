@@ -19,7 +19,7 @@ function($scope, posts, walls) {
 
     $scope.$on('removePost', function(event, args) {
         for (var i = 0; i < $scope.posts.length; i++) {
-            if ($scope.posts[i].id == args.post_id) {
+            if ($scope.posts[i].id == args.postId) {
                 $scope.posts.splice(i, 1);
                 return;
             }
@@ -32,8 +32,8 @@ function($scope, posts, walls) {
 
     $scope.newPostData = defaultPostData();
 
-    walls.getDefault().then(function(data) {
-        wall = data.walls[0]
+    walls.getDefault().then(function(resp) {
+        wall = resp.walls[0]
         $scope.wallId = wall.id;
         $scope.wallType = wall.wall_type;
         $scope.posts = wall.posts;
@@ -44,8 +44,8 @@ function($scope, posts, walls) {
         postData['post']['wall_id'] = $scope.wallId;
         postData['post']['wall_type'] = $scope.wallType;
         $scope.newPostData = defaultPostData();
-        posts.create(postData).then(function(post) {
-            prependPosts([post.post]);
+        posts.create(postData).then(function(resp) {
+            $scope.$emit("prependPosts", { posts: [ resp.post ] });
         });
     };
 

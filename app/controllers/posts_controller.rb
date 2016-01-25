@@ -36,13 +36,11 @@ class PostsController < ApplicationController
         render json: @post
     end
 
-    # GET /posts/1/like.json
+    # GET /posts/1/likes.json
     def likes
         user_ids = Like.where({ object: @post }).pluck(:user_id)
         users = User.find(user_ids)
-        render json: { object: @post,
-                       users: ActiveModel::ArraySerializer.new(users, each_serializer: UserReferenceSerializer)
-                     }
+        render json: { post: @post, users: users }, serializer: PostLikesSerializer, root: false
     end
 
     def shares

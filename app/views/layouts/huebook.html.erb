@@ -12,12 +12,14 @@
   <div id="top-pane">
     <div id="top-pane-content" class="clearfix">
       <%= link_to 'H', app_path + '#/', id: 'hblogo' %>
+      <form id="hb-search-form">
       <div id="hbsearch" class="input-group">
-        <input type="text" class="form-control" id="search" placeholder="Search Huebook...">
-        <div class="input-group-addon btn btn-default">
+        <input type="text" class="form-control" id="hb-search" placeholder="Search Huebook...">
+        <div class="input-group-addon btn btn-default" onclick="$('#hb-search-form').attr('action', '#search/' + $('#hb-search').val()).submit()">
           <span class="glyphicon glyphicon-search"></span>
         </div>
       </div>
+      </form>
     </div>
   </div>
   <div id="body">

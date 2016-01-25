@@ -17,14 +17,14 @@ function($scope, comments, ModalService) {
     }
 
     $scope.like = function() {
-        comments.like($scope.post.id, $scope.comment.id).then(function(data) {
-            $scope.$emit('updateComment', { comment: data.comment });
+        comments.like($scope.post.id, $scope.comment.id).then(function(resp) {
+            $scope.$emit('updateComment', { comment: resp.comment });
         });
     };
 
     $scope.unlike = function() {
-        comments.unlike($scope.post.id, $scope.comment.id).then(function(data) {
-            $scope.$emit('updateComment', { comment: data.comment });
+        comments.unlike($scope.post.id, $scope.comment.id).then(function(resp) {
+            $scope.$emit('updateComment', { comment: resp.comment });
         });
     };
 
@@ -33,7 +33,7 @@ function($scope, comments, ModalService) {
     };
 
     $scope.remove = function() {
-        comments.remove($scope.post.id, $scope.comment.id).then(function(data) {
+        comments.remove($scope.post.id, $scope.comment.id).then(function(resp) {
             $scope.$emit('removeComment', { comment_id: $scope.comment.id });
             $scope.$emit('refreshPost');
         });

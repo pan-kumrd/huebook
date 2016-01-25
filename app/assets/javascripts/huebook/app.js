@@ -15,6 +15,10 @@ huebook.config(['$routeProvider',
         templateUrl: 'wall.html',
         controller: 'WallController'
       }).
+      when('/search/:query', {
+        templateUrl: 'search.html',
+        controller: 'SearchController'
+      }).
       otherwise({
         redirectTo: '/'
       });
