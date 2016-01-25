@@ -9,11 +9,11 @@
       </td>
       <td>
         <span class="btn btn-default"
-                ng-click="user.friendship = { status: 0 }"
+                ng-click="sendFriendRequest(user.id)"
                 ng-show="user.friendship === null">Send Friend Request</span>
 
         <span class="btn btn-default"
-                ng-show="user.friendship !== null && user.friendship.status == 0"
+                ng-show="user.friendship !== null && user.friendship.status == 'requested'"
                 disabled="disabled">Friend Request Sent</span>
       </td>
     </tr></table>

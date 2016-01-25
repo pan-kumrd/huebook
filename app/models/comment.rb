@@ -4,10 +4,10 @@ class Comment < ActiveRecord::Base
     has_many :likes, as: :object
 
     def self.user_liked()
-        joins(:likes).where(likes: { user_id: self.user_id }).exists?
+        joins(:likes).where(likes: { user_id: User.current_user.id }).exists?
     end
 
     def user_liked()
-        likes.where(user_id: self.user_id).exists?
+        likes.where(user_id: User.current_user.id).exists?
     end
 end

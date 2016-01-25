@@ -28,6 +28,19 @@ Rails.application.routes.draw do
   end
 
 
+  # TODO: Can we make this nicer? Like, generic action mapping?
+  get 'search/users/:query', to: 'search#users'
+  get 'search/posts/:query', to: 'search#posts'
+  get 'search/events/:query', to: 'search#events'
+
+  # TODO: Can this be nicer too?
+  get  'friends', to: 'friendships#index'
+  get  'friends/:id', to: 'friendships#show'
+  post 'friends/:id/request', to: 'friendships#create'
+  post 'friends/:id/accept', to: 'friendships#accept'
+  post 'friends/:id/reject', to: 'friendships#reject'
+  delete 'friends/:id/unfriend', to: 'friendships#unfriend'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

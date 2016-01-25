@@ -1,0 +1,34 @@
+<div id="hb-profile-page">
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong><big>{{ user.first_name }} {{ user.last_name }}</big></strong></div>
+    <div class="panel-body clearfix" id="hb-new-post">
+      <div class="pull-left">
+        <img ng-src="{{ user.profile_picture_file_name | profilePic }}" height="200" />
+      </div>
+      <div>
+        <table>
+          <tr ng-show="user.email != null"><th>Email:</th><td>{{ user.email }}</td></tr>
+          <tr><th>Bio:</th><td>{{ user.bio }}</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="panel-footer" ng-hide="user.is_me">
+        <span class="btn btn-default"
+                ng-click="sendFriendRequest()"
+                ng-show="user.friendship === null">Send Friend Request</span>
+
+        <span class="btn btn-default"
+                ng-show="user.friendship !== null && user.friendship.status == 'requested'"
+                disabled="disabled">Friend Request Sent</span>
+
+        <span class="btn btn-default"
+                ng-click="unfriend()"
+                ng-show="user.friendship !== null && user.friendship.status == 'accepted'">
+                We ain't no Friends no more!</span>
+    </div>
+  </div>
+
+  <div class="wall" ng-controller="WallController">
+    <wall-post ng-repeat="post in posts track by post.id" ng-controller="PostController">
+  </div>
+</div>

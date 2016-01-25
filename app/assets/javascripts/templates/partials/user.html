@@ -1,5 +1,5 @@
 <div ng-controller="UserSidePaneController" id="hb-user-sidepane">
-  <a ng-href="profile/{{ user.id }}" class="hb-user-name">{{ user.first_name }} {{ user.last_name }}</a>
+  <a ng-click="go('profile/' + user.id)" class="hb-user-name">{{ user.first_name }} {{ user.last_name }}</a>
 
   <img ng-src="{{ user.profile_picture_file_name | profilePic }}" alt="{{ user.name }}" width="260" />
   <br/><br/>

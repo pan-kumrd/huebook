@@ -26,18 +26,25 @@ function($scope, posts, walls) {
         }
     });
 
+    $scope.$on('reloadPosts', function(event, args) {
+        function wallResponse(resp) {
+            wall = resp.wall
+            $scope.wallId = wall.id;
+            $scope.wallType = wall.wall_type;
+            $scope.posts = wall.posts;
+        }
+        if ($scope.wallId) { // could be set by parent controller
+            walls.get($scope.wallType, $scope.wallId).then(wallResponse);
+        } else {
+            walls.getDefault().then(wallResponse);
+        }
+    });
+
+
     function defaultPostData() {
         return { 'post' : { 'private': true } };
     }
-
     $scope.newPostData = defaultPostData();
-
-    walls.getDefault().then(function(resp) {
-        wall = resp.walls[0]
-        $scope.wallId = wall.id;
-        $scope.wallType = wall.wall_type;
-        $scope.posts = wall.posts;
-    })
 
     $scope.submitWallPost = function() {
         var postData = $scope.newPostData;
@@ -50,4 +57,5 @@ function($scope, posts, walls) {
     };
 
 
+    $scope.$emit('reloadPosts');
 }]);

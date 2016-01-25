@@ -8,6 +8,20 @@ var huebook = angular.module('huebook', [
     'angularModalService'
 ])
 
+/*huebook.run(['$location', function($rootScope, $location) {
+    $rootScope.go = function(path) {
+        $location.path(where);
+    };
+}]);
+*/
+
+huebook.run(function($rootScope, $location) {
+    $rootScope.go = function(path) {
+        $location.path(path);
+    }
+});
+
+
 huebook.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -18,6 +32,10 @@ huebook.config(['$routeProvider',
       when('/search/:query', {
         templateUrl: 'search.html',
         controller: 'SearchController'
+      }).
+      when('/profile/:id', {
+        templateUrl: 'profile.html',
+        controller: 'ProfileController'
       }).
       otherwise({
         redirectTo: '/'

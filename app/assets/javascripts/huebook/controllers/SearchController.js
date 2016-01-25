@@ -1,6 +1,6 @@
 var controllers = angular.module("controllers");
-controllers.controller("SearchController", [ '$scope', '$routeParams', '$location', 'posts', 'events', 'users',
-function($scope, $routeParams, $location, posts, events, users) {
+controllers.controller("SearchController", [ '$scope', '$routeParams', '$location', 'posts', 'events', 'users', 'friends',
+function($scope, $routeParams, $location, posts, events, users, friends) {
 
     $scope.users = [];
     $scope.events = [];
@@ -23,9 +23,16 @@ function($scope, $routeParams, $location, posts, events, users) {
         }
     });
 
-    $scope.go = function(where) {
-        $location.path(where);
-    }
+    $scope.sendFriendRequest = function(id) {
+        friends.request(id).then(function(resp) {
+            for (var i = 0; i < $scope.users.length; i++) {
+                if ($scope.users[i].id == id) {
+                    $scope.users[i].friendship = resp.friendship;
+                    return;
+                }
+            }
+        });
+    };
 
     $scope.currentTab = 'users';
 

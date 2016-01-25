@@ -4,12 +4,12 @@ class UsersController < ApplicationController
 
     # GET /users
     def index
-        render json: current_user, current_user: current_user
+        render json: current_user, current_user: current_user, root: 'user'
     end
 
     # GET /users/:id
     def show
-        render json: @user, current_user: current_user
+        render json: @user, current_user: current_user, root: 'user'
     end
 
     private

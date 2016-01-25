@@ -10,7 +10,7 @@ class CreateEvents < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_reference :events, :users, index: true, foreign_key: true
+    add_reference :events, :organizer, references: :users, index: true, foreign_key: true
 
   end
 end
