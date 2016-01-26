@@ -13,14 +13,14 @@ class Wall < ActiveRecord::Base
             if self.id == User.current_user.id or User.current_user.friends?(User.find(self.id)) then
                 return allPosts
             else
-                return Post.where("wall_id = ? AND wall_type = ? AND private = 0", self.id, self.wall_type)
+                return Post.where("wall_id = ? AND wall_type = ? AND private = 0", self.id, self.wall_type).order(created_at: :desc)
             end
         end
     end
 
     private
     def allPosts
-        return Post.where("wall_id = ? AND wall_type = ?", self.id, self.wall_type)
+        return Post.where("wall_id = ? AND wall_type = ?", self.id, self.wall_type).order(created_at: :desc)
     end
 end
 

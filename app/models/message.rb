@@ -1,4 +1,4 @@
 class Message < ActiveRecord::Base
-    belongs_to :sender
-    belongs_to :to
+    belongs_to :sender, class_name: 'User'
+    belongs_to :to, class_name: 'User'
 end

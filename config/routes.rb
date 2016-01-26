@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   # TODO: Can this be nicer too?
   get  'friends', to: 'friendships#index'
+  get  'friends/pending', to: 'friendships#pending'
   get  'friends/:id', to: 'friendships#show'
   post 'friends/:id/request', to: 'friendships#create'
   post 'friends/:id/accept', to: 'friendships#accept'

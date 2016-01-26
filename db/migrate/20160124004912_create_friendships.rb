@@ -7,6 +7,6 @@ class CreateFriendships < ActiveRecord::Migration
 
     add_reference :friendships, :initiator, references: :users, index: true, foreign_key: true, null: false, default: 0
     add_reference :friendships, :friend, references: :users, index: true, foreign_key: true, null: false, default: 0
-    add_index :friendships, [ :initiator, :friend ], unique: true
+    add_index :friendships, [ :initiator_id, :friend_id ], unique: true
   end
 end

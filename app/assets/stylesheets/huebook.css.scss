@@ -151,6 +151,16 @@ body, html {
         font-size: 26px;
     }
 
+    #hb-friend-reqests-view {
+
+        .profile-pic {
+            margin-right: 5px;
+        }
+
+        .friend-request-row td {
+            vertical-align: middle;
+        }
+    }
 }
 
 .hb-new-comment {

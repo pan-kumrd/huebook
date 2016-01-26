@@ -4,7 +4,7 @@ class WallsController < ApplicationController
 
     # GET /walls.json
     def default
-        wall = Wall.where("id = ? AND wall_type = 'User'", current_user.id)
+        wall = Wall.where("id = ? AND wall_type = 'User'", current_user.id).first
         render json: wall
     end
 

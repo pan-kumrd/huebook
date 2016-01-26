@@ -9,6 +9,13 @@ function($http) {
                         });
         },
 
+        pending: function() {
+            return $http.get('/friends/pending.json')
+                        .then(function(result) {
+                            return result.data;
+                        });
+        },
+
         request: function(id) {
             return $http.post('/friends/' + id + '/request.json')
                         .then(function(result) {

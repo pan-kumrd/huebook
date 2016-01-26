@@ -10,6 +10,12 @@ class FriendshipsController < ApplicationController
         render json: friends
     end
 
+    # GET /friends/pending.json
+    def pending
+        friends = Friendship.where("friend_id = ? AND status = 0", current_user.id)
+        render json: friends
+    end
+
     # GET /friends/:id.json
     def show
         render json: @friend

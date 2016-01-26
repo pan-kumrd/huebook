@@ -9,4 +9,18 @@
   <button class="btn {{ messages.count == 0 ? 'btn-defalut' : 'btn-warning' }} hb-button-wide" type="button">
     Messages <span class="badge">{{messages.count}}</span>
   </button>
+
+  <div class="panel panel-default" id="hb-friend-reqests-view" ng-show="pendingFriendRequest.length > 0">
+    <div class="panel-heading">Friend requests</div>
+    <div class="panel-body">
+      <table class="table table-hover">
+        <tr ng-repeat="friend in pendingFriendRequest" class="friend-request-row">
+          <td><img ng-src="{{ friend.initiator.profile_picture_file_name | profilePic }}" width="50" class="profile-pic" /></td>
+          <td width="100%">{{ friend.initiator.first_name }} {{ friend.initiator.last_name }}</td>
+          <td><span class="btn btn-default" ng-click="acceptFriend(friend.initiator.id)">Oookay</span></br>
+              <span class="btn btn-default" ng-click="rejectFriend(friend.initiator.id)">Nooope</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
