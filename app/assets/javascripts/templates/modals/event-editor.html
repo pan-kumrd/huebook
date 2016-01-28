@@ -1,0 +1,75 @@
+<div class="modal fade" id="hb-event-rsvp-popup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1> {{ title }}</h1>
+        <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="name">Name</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" ng-model="newEventData.event.name" class="form-control"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="start" class="col-sm-2 control-label">Start</label>
+            <div class="col-sm-10">
+              <div class="input-group date" id="hb-new-event-start">
+                <input type="text" class="form-control" name="start" id="hb-new-event-start-input" ng-model="newEventData.event.start">
+                <span class="input-group-addon add-on">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="end" class="col-sm-2 control-label">End</label>
+            <div class="col-sm-10">
+              <div class="input-group date" id="hb-new-event-end">
+                <input type="text" class="form-control" name="end" id="hb-new-event-end-input" ng-model="newEventData.event.end">
+                <span class="input-group-addon add-on">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="location" class="col-sm-2 control-label">Location</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="location" ng-model="newEventData.event.location">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="8" name="description" ng-model="newEventData.event.description"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="createEvent()">Create</button>
+        <button class="btn btn-default" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#hb-new-event-start').datetimepicker({
+            sideBySide: true
+        });
+        $('#hb-new-event-end').datetimepicker({
+            sideBySide: true,
+            useCurrent: false
+        });
+        $("#hb-new-event-end").on("dp.change", function (e) {
+            $('#hb-new-event-start').data("DateTimePicker").maxDate(e.date);
+        });
+        $("#hb-new-event-start").on("dp.change", function (e) {
+            $('#hb-new-event-end').data("DateTimePicker").minDate(e.date);
+        });
+    });
+</script>

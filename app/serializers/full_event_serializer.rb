@@ -34,4 +34,8 @@ class FullEventSerializer < ActiveModel::Serializer
     def invited
         EventRsvp.where({ event_id: object.id, status: EventRsvp.statuses[:invited] }).count
     end
+
+    def organizer
+        User.where({ id: object.organizer_id }).first
+    end
 end

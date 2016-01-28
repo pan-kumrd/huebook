@@ -33,13 +33,13 @@ function($http) {
 
         create: function(data) {
             return $http({
-                            method: 'POST',
-                            url: '/posts.json',
-                            data: $.param(data),
-                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                        }).then(function(result) {
-                            return result.data;
-                        });
+                        method: 'POST',
+                        url: '/posts.json',
+                        data: $.param(data),
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    }).then(function(result) {
+                        return result.data;
+                    });
         },
 
         remove: function(id) {

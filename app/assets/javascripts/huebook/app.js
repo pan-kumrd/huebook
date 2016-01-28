@@ -15,7 +15,7 @@ var huebook = angular.module('huebook', [
 }]);
 */
 
-huebook.run(function($rootScope, $location, users) {
+huebook.run(function($rootScope, $location, users, ModalService) {
     $rootScope.go = function(path) {
         $location.path(path);
     };
@@ -26,6 +26,16 @@ huebook.run(function($rootScope, $location, users) {
 
     $rootScope.search = function() {
         $location.path('/search/' + $('#hb-search').val());
+    };
+
+    $rootScope.createEvent = function() {
+        ModalService.showModal({
+            templateUrl: 'modals/event-editor.html',
+            controller: 'EventEditorController',
+            inputs: {}
+        }).then(function(modal) {
+            modal.element.modal();
+        });
     };
 });
 
@@ -48,10 +58,6 @@ huebook.config(['$routeProvider',
       when('/events', {
         templateUrl: 'events.html',
         controller: 'EventsController'
-      }).
-      when('/events/new', {
-        templateUrl: 'event-editor.html',
-        controller: 'EventEditorController'
       }).
       when('/events/:id', {
         templateUrl: 'event.html',

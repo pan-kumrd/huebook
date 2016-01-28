@@ -35,6 +35,16 @@ class RsvpsController < ApplicationController
         end
     end
 
+    # POST /events/:eventId/rsvp/:userId.json
+    def invite
+        rsvp = EventRsvp.create({ user_id: params[:userId],
+                                  event_id: params[:eventId],
+                                  invited_by_id: current_user.id,
+                                  status: EventRsvp.statuses[:invited]
+                                });
+        render json: rsvp, root: 'rsvp'
+    end
+
     private
     def set_event
         @event = Event.find(params[:eventId])

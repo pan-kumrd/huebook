@@ -1,6 +1,6 @@
 var controllers = angular.module('controllers');
-controllers.controller("InviteController", [ '$scope', '$location', 'eventId', 'eventrsvps', 'friends', 'eventrsvps',
-function($scope, $location, eventId, eventrsvps, friends, eventrsvps) {
+controllers.controller("InviteController", [ '$scope', '$location', 'eventId', 'parentScope', 'eventrsvps', 'friends', 'eventrsvps',
+function($scope, $location, eventId, parentScope, eventrsvps, friends, eventrsvps) {
 
     $scope.eventId = eventId;
     $scope.rsvps = [];
@@ -8,6 +8,13 @@ function($scope, $location, eventId, eventrsvps, friends, eventrsvps) {
 
     $scope.close = function(result) {
         close(result, 500);
+    };
+
+    $scope.inviteFriend = function(userId) {
+        eventrsvps.create($scope.eventId, userId).then(function(resp) {
+            $scope.rsvps.push(resp.rsvp.user.id);
+            parentScope.$emit('updateEvent', { eventId: resp.rsvp.event_id });
+        });
     };
 
     eventrsvps.getAll(eventId).then(function(resp) {

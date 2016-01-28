@@ -13,4 +13,8 @@ class EventSerializer < ActiveModel::Serializer
     def rsvp
         EventRsvp.where({ event_id: object.id, user_id: User.current_user.id }).first
     end
+
+    def organizer
+        User.where(id: object.organizer_id).first
+    end
 end

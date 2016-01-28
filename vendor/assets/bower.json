@@ -8,7 +8,5 @@
     "bootstrap-modal": "latest",
     "moment": "latest",
     "eonasdan-bootstrap-datetimepicker": "latest"
-  },
-  "resolutions": {
   }
 }

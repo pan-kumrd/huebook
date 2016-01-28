@@ -8,7 +8,7 @@
       <tr><th>Description:</th><td>{{ event.description | limitTo: 80 }}{{ event.description > 80 ? '...' : '' }}</td></tr>
     </table>
   </div>
-  <div class="panel-footer" ng-hide="event.organizer.id == current_user.id">
+  <div class="panel-footer" ng-hide="event.organizer.id == currentUser.id">
     <span class="btn btn-default"
           ng-click="rsvp('tentative')"
           ng-show="event.rsvp === null">Hey, I wanna come too!</span>

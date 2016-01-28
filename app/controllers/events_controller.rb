@@ -30,10 +30,12 @@ class EventsController < ApplicationController
         render json: events
     end
 
-    # POST /event/create
+    # POST /events
     def create
         event = Event.new(post_params)
-        event.user = current_user
+        event.start = DateTime.strptime(post_params[:start], '%s')
+        event.end = DateTime.strptime(post_params[:start], '%s')
+        event.organizer_id = current_user.id
         event.save
         render json: event
     end
@@ -56,6 +58,6 @@ class EventsController < ApplicationController
 
     # never trust parameters from the scary internet, only allow the white list through.
     def post_params
-        params.require(:event).permit(:name, :description, :start, :end)
+        params.require(:event).permit(:name, :description, :location, :start, :end)
     end
 end

@@ -12,7 +12,7 @@
     <div class="rsvp">
       <span class="btn btn-default"
           ng-click="rsvp('tentative')"
-          ng-show="event.rsvp === null">Hey, I wanna come too!</span>
+          ng-show="event.rsvp === null && event.organizer.id != currentUser.id">Hey, I wanna come too!</span>
 
       <div class="btn-group" ng-show="event.rsvp !== null">
         <span class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">

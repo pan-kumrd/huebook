@@ -12,7 +12,13 @@ function($scope, $routeParams, events, eventrsvps, walls, ModalService) {
     $scope.wallType = 'event';
 
     $scope.$on('updateEvent', function(event, args) {
-        $scope.event = args.event;
+        if (args.eventId) {
+            events.get(args.eventId).then(function(resp) {
+                $scope.event = resp.event;
+            });
+        } else {
+            $scope.event = args.event;
+        }
     });
 
     $scope.rsvp = function(status) {
@@ -46,7 +52,8 @@ function($scope, $routeParams, events, eventrsvps, walls, ModalService) {
             templateUrl: 'modals/invite.html',
             controller: 'InviteController',
             inputs: {
-                eventId: $scope.event.id
+                eventId: $scope.event.id,
+                parentScope: $scope
             }
         }).then(function(modal) {
             modal.element.modal();

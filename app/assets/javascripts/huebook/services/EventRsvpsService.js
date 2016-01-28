@@ -29,6 +29,13 @@ function($http) {
                         .then(function(result) {
                             return result.data;
                         });
+        },
+
+        create: function(eventId, userId) {
+            return $http.post('/events/' + eventId + '/invite/' + userId + '.json')
+                        .then(function(result) {
+                            return result.data;
+                        });
         }
     }
 }]);
