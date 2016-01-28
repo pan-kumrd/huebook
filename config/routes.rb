@@ -42,6 +42,13 @@ Rails.application.routes.draw do
   post 'friends/:id/reject', to: 'friendships#reject'
   delete 'friends/:id/unfriend', to: 'friendships#unfriend'
 
+  get  'events/my', to: 'events#myEvents'
+  get  'events/:id', to: 'events#show'
+  get  'events/:eventId/rsvp', to: 'rsvps#index'
+  get  'events/:eventId/rsvp/:status', to: 'rsvps#filter'
+  post 'events/:eventId/rsvp/:status', to: 'rsvps#update'
+  delete 'events/:eventId/rsvp', to: 'rsvps#leave'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

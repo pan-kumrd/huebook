@@ -31,7 +31,7 @@ class FriendshipsController < ApplicationController
 
     # POST /friends/:id/accept
     def accept
-        @friend.status = "accepted"
+        @friend.status = Friendship.statuses[:accepted]
         @friend.save!
         render json: @friend
     end
@@ -42,7 +42,7 @@ class FriendshipsController < ApplicationController
         friend = Friendship.new({ status: "requested",
                                   initiator: current_user,
                                   friend: user })
-        friend.status = "requested"
+        friend.status = Friendship.statuses[:requested]
         friend.initiator_id = current_user.id
         friend.friend_id = user.id
         friend.save!

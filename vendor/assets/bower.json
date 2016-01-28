@@ -4,8 +4,11 @@
     "angular": "latest",
     "angular-route": "latest",
     "angular-modal-service": "latest",
-    "bootstrap-sass-official": "latest",
     "bootstrap-dropdown": "latest",
-    "bootstrap-modal": "latest"
+    "bootstrap-modal": "latest",
+    "moment": "latest",
+    "eonasdan-bootstrap-datetimepicker": "latest"
+  },
+  "resolutions": {
   }
 }

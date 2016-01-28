@@ -16,6 +16,7 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 @import "bootstrap-modal/css/bootstrap-modal";
+@import "bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min";
 
 
 a {
@@ -30,7 +31,7 @@ body, html {
 
 #huebook {
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     position: relative;
 }
 
@@ -44,29 +45,35 @@ body, html {
     margin: auto;
     padding-top: 5px;
     padding-bottom: 5px;
-}
 
-#hblogo {
-    float: left;
-    display: block;
-    background: #243A00;
-    color: #FFF;
-    height: 34px;
-    width: 34px;
-    line-height: 34px;
-    font-size: 30px;
-    border-radius: 10px;
-    text-align: center;
-}
 
-#hblogo:hover {
-    text-decoration: none;
-    background: #3E6200;
-}
+    #hblogo {
+        float: left;
+        display: block;
+        background: #243A00;
+        color: #FFF;
+        height: 34px;
+        width: 34px;
+        line-height: 34px;
+        font-size: 30px;
+        border-radius: 10px;
+        text-align: center;
+    }
 
-#hbsearch {
-    float: right;
-    width: 300px;
+    #hb-new-event-btn {
+        float: left;
+        margin-left: 30px;
+    }
+
+    #hblogo:hover {
+        text-decoration: none;
+        background: #3E6200;
+    }
+
+    #hbsearch {
+        float: right;
+        width: 300px;
+    }
 }
 
 #body {
@@ -74,13 +81,14 @@ body, html {
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+    min-height: 100%;
 }
 
 #footer {
     width: 100%;
     height: 34px;
     background: #5A8B07;
-    position: absolute;
+    position: relative;
     bottom: 0;
 }
 
@@ -137,10 +145,6 @@ body, html {
     .table tr {
         cursor: pointer;
     }
-
-    .table td {
-        vertical-align: middle;
-    }
 }
 
 #hb-user-sidepane {
@@ -156,11 +160,13 @@ body, html {
         .profile-pic {
             margin-right: 5px;
         }
-
-        .friend-request-row td {
-            vertical-align: middle;
-        }
     }
+}
+
+
+.table-vcenter > tbody > tr > td
+{
+    vertical-align: middle;
 }
 
 .hb-new-comment {
@@ -190,5 +196,76 @@ body, html {
 
     img {
         padding-right: 15px;
+    }
+}
+
+.hb-event-preview {
+    .panel-heading {
+        cursor: pointer;
+    }
+}
+
+#hb-event-page {
+
+    h2 {
+        text-align: center;
+    }
+
+    .rsvp {
+        text-align: center;
+    }
+
+    .hb-event-details {
+
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0;
+            padding: 0;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .invite {
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        .invite-btn {
+            width: 235px;
+        }
+    }
+
+    .rsvps-count {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 262px;
+    }
+    .rsvp-count {
+        width: 65px;
+        float: left;
+        text-align: center;
+    }
+}
+
+.modal {
+    .modal-body {
+        /* Arbitrary number */
+        max-height: 500px;
+    }
+
+    .modal-header {
+
+        padding-bottom: 5px;
+
+        h1 {
+            margin: 0;
+            padding: 0;
+            display: inline;
+        }
     }
 }

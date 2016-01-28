@@ -12,9 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require moment
+//= require bootstrap
 //= require bootstrap-dropdown
-//= require bootstrap-modal/js/bootstrap-modal
+//= require bootstrap-modal
 //= require bootstrap-modal/js/bootstrap-modalmanager
+//= require bootstrap-datetimepicker
 //= require angular/angular
 //= require angular-route/angular-route
 //= require angular-rails-templates

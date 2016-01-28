@@ -1,6 +1,6 @@
 class Friendship < ActiveRecord::Base
-    enum status: [ :requested,
-                   :accepted ]
+    enum statuses: [ :requested,
+                     :accepted ]
 
     belongs_to :initiator, class_name: 'User',
                            foreign_key: 'id'

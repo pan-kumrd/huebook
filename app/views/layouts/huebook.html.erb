@@ -12,11 +12,14 @@
   <div id="top-pane">
     <div id="top-pane-content" class="clearfix">
       <%= link_to 'H', app_path + '#/', id: 'hblogo' %>
+
+      <div class="btn btn-default" id="hb-new-event-btn" ng-click="go('/events/new')">New event</div>
+
       <form id="hb-search-form">
       <div id="hbsearch" class="input-group">
-        <input type="text" class="form-control" id="hb-search" placeholder="Search Huebook...">
-        <div class="input-group-addon btn btn-default" onclick="$('#hb-search-form').attr('action', '#search/' + $('#hb-search').val()).submit()">
-          <span class="glyphicon glyphicon-search"></span>
+        <input type="text" class="form-control" id="hb-search" placeholder="Search Huebook..." ng-keydown="$event.which === 13 && search()">
+        <div class="input-group-addon btn btn-default">
+          <span class="glyphicon glyphicon-search" ng-click="search()"></span>
         </div>
       </div>
       </form>

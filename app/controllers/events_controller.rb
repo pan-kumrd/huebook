@@ -1,6 +1,6 @@
-class PostsController < ApplicationController
+class EventsController < ApplicationController
     skip_before_filter :verify_authenticity_token
-    before_action :set_event, only: [:show, :rsvps, :rsvp, :setRsvp, :destroyRsvp :destroy]
+    before_action :set_event, only: [:show]
     layout false
 
     # GET /events
@@ -13,46 +13,22 @@ class PostsController < ApplicationController
     # GET /events/1
     # GET /events/1.json
     def show
-        render json: @event
+        render json: @event, serializer: FullEventSerializer, root: 'event'
     end
 
-    ####### TODO TODO TODO TODO #######
-    # MOVE RSVP TO ITS OWN CONTROLLER #
-    ####### TODO TODO TODO TODO #######
-
-    # GET /events/1/rsvps
-    # GET /events/1/rsvps.json
-    def rsvps
-        rsvps = EventRsvps.where({ event: @event })
-        render json: rsvps, serializer: ActiveModel::ArraySerializer,
-                            each_serializer: EventRSVPSerializer,
-                            root: 'rsvps'
+    # GET /events/my.json
+    def myEvents
+        # FIXME: ActiveRecord is literally one of the stupidest pieces of crap
+        # I had the unfortunate "luck" to ever deal with. Apparently it's OK to
+        # use placeholders in WHERE conditions, but not in JOINS, because FUCK
+        # YOU, consistent API designs.....I want back to Qt!
+        # Luckily current_user is coming from the database so we can be reasonably
+        # sure that no SQL injection can happen here. Right? RIGHT?
+        events = Event.joins("LEFT JOIN event_rsvps ON (events.id = event_rsvps.event_id AND event_rsvps.user_id = " + current_user.id.to_s + ")")
+                      .where("events.organizer_id = ? OR event_rsvps.user_id IS NOT NULL", current_user.id)
+                      .select("events.*")
+        render json: events
     end
-
-    # GET /events/1/rsvp
-    # GET /events/1/rsvp
-    def rsvp
-        rsvp = EventRsvps.where({ event: @event,
-                                  user: current_user })
-        render json: rsvp
-    end
-
-    # POST /events/1/rsvp
-    def setRsvp
-        rsvp = EventRsvp.find_or_create_by({ event: @event,
-                                             user: current_user })
-        rsvp.status = post_params[:status]
-        rsvp.save()
-        render json: rsvp
-    end
-
-    # DELETE /events/1/rsvp/
-    def destroyRsvp
-        EventsRsvp.where({ event: @event, user: current_user }).destroy
-        respond_to do |format|
-            format.json { head :no_content }
-        end
-    def 
 
     # POST /event/create
     def create

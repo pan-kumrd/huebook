@@ -1,1 +1,31 @@
- 
+<div class="hb-event-preview panel panel-default" >
+  <div class="panel-heading" ng-click="go('/events/' + event.id)"><string><big>{{ event.name }}</big></strong></div>
+  <div class="panel-body">
+    <table>
+      <tr><th>When:</th><td>{{ event.start }} - {{ event.end }}</td></tr>
+      <tr><th>Where:</th><td>{{ event.location }}</td></tr>
+      <tr><th>Organizer:</th><td><a ng-click="go('/profile/' + event.organizer.id)">{{ event.organizer.first_name }} {{ event.organizer.last_name }}</a></td></tr>
+      <tr><th>Description:</th><td>{{ event.description | limitTo: 80 }}{{ event.description > 80 ? '...' : '' }}</td></tr>
+    </table>
+  </div>
+  <div class="panel-footer" ng-hide="event.organizer.id == current_user.id">
+    <span class="btn btn-default"
+          ng-click="rsvp('tentative')"
+          ng-show="event.rsvp === null">Hey, I wanna come too!</span>
+
+    <div class="btn-group" ng-show="event.rsvp !== null">
+      <span class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+        {{ event.rsvp ? statusLabels[event.rsvp.status] : '' }} <span class="caret"></span>
+      </span>
+      <ul class="dropdown-menu">
+        <li><a ng-click="rsvp('accepted')">{{ statusLabels['accepted'] }}</a></li>
+        <li><a ng-click="rsvp('tentative')">{{ statusLabels['tentative'] }}</a></li>
+        <li><a ng-click="rsvp('rejected')">{{ statusLabels['rejected'] }}</a></li>
+      </ul>
+    </div>
+    <span class="btn btn-default" type="button"
+          ng-show="event.rsvp !== null"
+          ng-click="leave()">Forget it, I'm outta here
+    </span>
+  </div>
+</div>

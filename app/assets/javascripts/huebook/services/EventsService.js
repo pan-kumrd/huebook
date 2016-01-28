@@ -8,6 +8,20 @@ function($http) {
                         .then(function(result) {
                             return result.data;
                         });
+        },
+
+        get : function(id) {
+            return $http.get('/events/' + id + '.json')
+                        .then(function(result) {
+                            return result.data;
+                        });
+        },
+
+        myEvents: function(query) {
+            return $http.get('/events/my.json')
+                        .then(function(result) {
+                            return result.data;
+                        });
         }
     }
 }]);

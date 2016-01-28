@@ -1,0 +1,74 @@
+<div id="hb-event-page">
+  <div id="hb-content">
+
+    <div ng-include="'partials/wall.html'">
+    </div>
+
+  </div>
+
+  <div id="hb-right-pane">
+    <h2>{{ event.name }}</h2>
+
+    <div class="rsvp">
+      <span class="btn btn-default"
+          ng-click="rsvp('tentative')"
+          ng-show="event.rsvp === null">Hey, I wanna come too!</span>
+
+      <div class="btn-group" ng-show="event.rsvp !== null">
+        <span class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+          {{ event.rsvp ? statusLabels[event.rsvp.status] : '' }} <span class="caret"></span>
+        </span>
+        <ul class="dropdown-menu">
+            <li><a ng-click="rsvp('accepted')">{{ statusLabels['accepted'] }}</a></li>
+            <li><a ng-click="rsvp('tentative')">{{ statusLabels['tentative'] }}</a></li>
+            <li><a ng-click="rsvp('rejected')">{{ statusLabels['rejected'] }}</a></li>
+        </ul>
+      </div>
+      <span class="btn btn-default" type="button"
+          ng-show="event.rsvp !== null"
+          ng-click="leave()">Leave this party
+      </span>
+    </div>
+
+    <div class="rsvps-count clearfix">
+      <div class="rsvp-count">
+        <span class="btn btn-default" ng-click="showRsvps('accepted')">
+          <span class="glyphicon glyphicon-ok-sign"></span><br/>{{ event.accepted }}
+        </span>
+      </div>
+      <div class="rsvp-count">
+        <span class="btn btn-default" ng-click="showRsvps('tentative')">
+          <span class="glyphicon glyphicon-question-sign"></span><br/>{{ event.tentative }}
+        </span>
+      </div>
+      <div class="rsvp-count">
+        <span class="btn btn-default"  ng-click="showRsvps('rejected')">
+          <span class="glyphicon glyphicon-remove-sign"></span><br/>{{ event.rejected }}
+        </span>
+      </div>
+      <div class="rsvp-count">
+        <span class="btn btn-default" ng-click="showRsvps('invited')">
+          <span class="glyphicon glyphicon-plus-sign"></span><br/>{{ event.invited }}
+        </span>
+      </div>
+    </div>
+
+    <div class="invite">
+        <div class="btn btn-default invite-btn" ng-click="invite()">Invite a Friend!</div>
+    </div>
+
+    <ul class="hb-event-details">
+      <li><strong>Organizer:</strong>
+        <a ng-click="go('/profile/' + event.organizer.id)">
+          {{ event.organizer.first_name }} {{ event.organizer.last_name }}
+        </a>
+      </li>
+      <li><strong>Starts:</strong> {{ event.start }}</li>
+      <li><strong>Ends:</strong> {{ event.end }}</li>
+      <li><strong>Location:</strong> {{ event.location }}</li>
+    </ul>
+    <br/>
+    <p>{{ event.description }}</p>
+
+  </div>
+</div>

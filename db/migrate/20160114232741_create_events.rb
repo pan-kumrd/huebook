@@ -3,6 +3,7 @@ class CreateEvents < ActiveRecord::Migration
     create_table :events do |t|
       t.string  :name,          null: false, default: ""
       t.string  :description,   null: false, default: ""
+      t.string  :location,      null: false, default: ""
 
       t.datetime :start,        null: false
       t.datetime :end,          null: false

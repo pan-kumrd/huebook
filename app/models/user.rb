@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :confirmable
 
   has_many :posts, as: :wall
+  has_many :organizer_events, class_name: 'EventRsvp', foreign_key: 'organizer_id'
   has_many :events, through: :event_rsvps
   has_many :friends, through: :friendships
 

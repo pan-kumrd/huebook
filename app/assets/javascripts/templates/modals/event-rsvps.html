@@ -1,0 +1,28 @@
+<div class="modal fade" id="hb-event-rsvp-popup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1> {{ statusLabels[status] }}</h1>
+        <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover table-vcenter">
+        <tr ng-repeat="rsvp in rsvps" data-dismiss="modal">
+          <td ng-click="close(false); openProfile(rsvp.user.id)">
+            <img ng-src="{{ rsvp.user.profile_picture_file_name | profilePic }}" height="50" />
+          </td>
+          <td width="90%">
+            <a ng-click="close(false); openProfile(rsvp.user.id)">{{ rsvp.user.first_name }} {{ rsvp.user.last_name }}</a>
+            </br>
+            <span ng-hide="rsvp.user.id == rsvp.invited_by.id">
+              <small>(invited by <a ng-click="close(false); openProfile(rsvp.invited_by.id)">{{ rsvp.invited_by.first_name }} {{ rsvp.invited_by.last_name }}</a>)</small>
+            </span>
+          </td>
+        </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

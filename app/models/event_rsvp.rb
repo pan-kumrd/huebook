@@ -4,6 +4,7 @@ class EventRsvp < ActiveRecord::Base
                    :tentative,
                    :rejected ]
 
-    belongs_to :user
+    belongs_to :invited_by, class_name: 'User'
     belongs_to :event
+    belongs_to :user
 end
