@@ -147,23 +147,6 @@ body, html {
     }
 }
 
-#hb-user-sidepane {
-
-    .hb-user-name {
-        display: block;
-        text-align: center;
-        font-size: 26px;
-    }
-
-    #hb-friend-reqests-view {
-
-        .profile-pic {
-            margin-right: 5px;
-        }
-    }
-}
-
-
 .table-vcenter > tbody > tr > td
 {
     vertical-align: middle;
@@ -194,8 +177,17 @@ body, html {
 
     width: 100%;
 
-    img {
-        padding-right: 15px;
+    .hb-user-name {
+        display: block;
+        text-align: center;
+        font-size: 26px;
+    }
+
+    #hb-friend-reqests-view {
+
+        .profile-pic {
+            margin-right: 5px;
+        }
     }
 }
 

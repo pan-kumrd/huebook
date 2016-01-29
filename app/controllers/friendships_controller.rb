@@ -39,9 +39,7 @@ class FriendshipsController < ApplicationController
     # POST /friends/:id/request
     def create
         user = User.find(params[:id])
-        friend = Friendship.new({ status: "requested",
-                                  initiator: current_user,
-                                  friend: user })
+        friend = Friendship.new()
         friend.status = Friendship.statuses[:requested]
         friend.initiator_id = current_user.id
         friend.friend_id = user.id

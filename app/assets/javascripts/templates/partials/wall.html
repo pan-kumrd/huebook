@@ -1,5 +1,8 @@
 <div class="wall" ng-controller="WallController">
-  <div class="panel panel-default">
+  <div class="panel panel-default"
+       ng-show="(wallType == 'User' && user.friendship !== null && user.friendship.status == 'accepted')
+                || (wallType == 'User' && user.is_me) ||
+                || (wallType == 'Event' && event.rsvp !== null)">
     <div class="panel-heading"><strong><big>Whine to your friends!</big></strong></div>
     <div class="panel-body" id="hb-new-post">
       <form ng-submit="submitWallPost()" name="new-post-form">

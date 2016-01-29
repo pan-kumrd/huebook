@@ -1,6 +1,7 @@
 var services = angular.module('services');
-services.factory('users', [ '$http',
-function($http) {
+services.factory('users', [ '$q', '$http', '$rootScope',
+function($q, $http, $rootScope) {
+
     return {
         self: function() {
             return $http.get('/users.json')
@@ -19,6 +20,24 @@ function($http) {
                         .then(function(result) {
                             return result.data;
                         });
+        },
+
+        currentUser: function() {
+           var deferred = $q.defer();
+           if ($rootScope.currentUser !== undefined) {
+               deferred.resolve();
+           } else {
+                $http.get('/users.json').success(function(result) {
+                    if (result == null) {
+                        deferred.reject();
+                    } else {
+                        $rootScope.currentUser = result.user;
+                        deferred.resolve();
+                    }
+                });
+           }
+
+           return deferred.promise;
         }
    }
 }]);

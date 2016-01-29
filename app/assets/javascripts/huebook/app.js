@@ -6,23 +6,51 @@ var huebook = angular.module('huebook', [
     'directives',
     'filters',
     'angularModalService'
-])
+]);
 
-/*huebook.run(['$location', function($rootScope, $location) {
-    $rootScope.go = function(path) {
-        $location.path(where);
-    };
+angular.module('controllers', []);
+angular.module('services', []);
+angular.module('directives', []);
+angular.module('filters', []);
+
+huebook.config(['$routeProvider',
+function($routeProvider) {
+    $routeProvider.
+      when('/', {
+        templateUrl: 'profile.html',
+        controller: 'ProfileController',
+        resolve: { currentUser: function(users) { return users.currentUser(); } }
+      }).
+      when('/search/:query', {
+        templateUrl: 'search.html',
+        controller: 'SearchController',
+        resolve: { currentUser: function(users) { return users.currentUser(); } }
+      }).
+      when('/profile/:id', {
+        templateUrl: 'profile.html',
+        controller: 'ProfileController',
+        resolve: { currentUser: function(users) { return users.currentUser(); } }
+      }).
+      when('/events', {
+        templateUrl: 'events.html',
+        controller: 'EventsController',
+        resolve: { currentUser: function(users) { return users.currentUser(); } }
+      }).
+      when('/events/:id', {
+        templateUrl: 'event.html',
+        controller: 'EventController',
+        resolve: { currentUser: function(users) { return users.currentUser(); } }
+      }).
+      otherwise({
+        redirectTo: '/'
+      });
 }]);
-*/
 
-huebook.run(function($rootScope, $location, users, ModalService) {
+huebook.run(['$rootScope', '$location', 'users', 'ModalService',
+function($rootScope, $location, users, ModalService) {
     $rootScope.go = function(path) {
         $location.path(path);
     };
-    users.self().then(function(resp) {
-        $rootScope.currentUser = resp.user;
-        $rootScope.$broadcast("userChanged", $rootScope.currentUser);
-    });
 
     $rootScope.search = function() {
         $location.path('/search/' + $('#hb-search').val());
@@ -37,38 +65,5 @@ huebook.run(function($rootScope, $location, users, ModalService) {
             modal.element.modal();
         });
     };
-});
+}]);
 
-
-huebook.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/', {
-        templateUrl: 'home.html',
-        controller: 'HomeController'
-      }).
-      when('/search/:query', {
-        templateUrl: 'search.html',
-        controller: 'SearchController'
-      }).
-      when('/profile/:id', {
-        templateUrl: 'profile.html',
-        controller: 'ProfileController'
-      }).
-      when('/events', {
-        templateUrl: 'events.html',
-        controller: 'EventsController'
-      }).
-      when('/events/:id', {
-        templateUrl: 'event.html',
-        controller: 'EventController'
-      }).
-      otherwise({
-        redirectTo: '/'
-      });
-  }]);
-
-angular.module('controllers', []);
-angular.module('services', []);
-angular.module('directives', []);
-angular.module('filters', []);
