@@ -2,7 +2,14 @@
   <div class="panel-heading clearfix">
     <div class="pull-left">
       <img ng-src="{{ post.user.profile_picture_file_name | profilePic }}" height="30" />&nbsp;
-      <a ng-click="go('/profile/' + post.user.id)">{{ post.user.first_name }} {{ post.user.last_name }}</a>
+      <a ng-click="go('/profile/' + post.user.id)">
+        {{ post.user.first_name }} {{ post.user.last_name }}
+      </a>
+      <span ng-show="wallType == 'User' && (post.user.id != wallId || post.wall.id != wallId || post.wall.type.toLowerCase() != wallType.toLowerCase())">
+        &#8227; <a ng-click="go((post.wall.type == 'user' ? 'profile' : 'events') + '/' + post.wall.id)">
+          {{ post.wall.name }}
+        </a>
+      </span>
       on {{ post.created_at }}
     </div>
     <div class="pull-right">

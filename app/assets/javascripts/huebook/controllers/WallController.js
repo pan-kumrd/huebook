@@ -2,7 +2,7 @@ var controllers = angular.module('controllers');
 controllers.controller("WallController", [ '$scope', 'posts', 'walls',
 function($scope, posts, walls) {
 
-    $scope.posts = []
+    $scope.posts = [];
 
     $scope.$on('updatePost', function(event, args) {
         for (var i = 0; i < $scope.posts.length; i++) {
@@ -31,6 +31,7 @@ function($scope, posts, walls) {
             wall = resp.wall
             $scope.wallId = wall.id;
             $scope.wallType = wall.wall_type;
+            $scope.wallName = wall.wall_name;
             $scope.posts = wall.posts;
         }
         if ($scope.wallId) { // could be set by parent controller

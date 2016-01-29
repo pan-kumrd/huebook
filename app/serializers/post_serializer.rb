@@ -2,8 +2,7 @@ class PostSerializer < ActiveModel::Serializer
     attributes :id,
                :text,
                :private,
-               :wall_id,
-               :wall_type,
+               :wall,
                :created_at,
                :updated_at,
                :attacment_url,
@@ -15,5 +14,6 @@ class PostSerializer < ActiveModel::Serializer
                :user_liked
                :user
 
+    has_one :wall, serializer: WallReferenceSerializer
     has_one :user, serializer: UserReferenceSerializer
 end

@@ -4,23 +4,26 @@ class Wall < ActiveRecord::Base
     has_many :posts
 
     def posts
-        print("MODELTYPE ", self.wall_type, "\n")
-
-        if self.wall_type == 'Event'
+        if self.wall_type == 'Event' then
             return allPosts
         else
-            print(self.id, " and ", User.current_user.id, " friends? ", User.current_user.friends?(User.find(self.id)), "\n")
             if self.id == User.current_user.id or User.current_user.friends?(User.find(self.id)) then
                 return allPosts
             else
-                return Post.where("wall_id = ? AND wall_type = ? AND private = 0", self.id, self.wall_type).order(created_at: :desc)
+                return Post.where("user_id = ? AND private = 0", self.id).order(created_at: :desc)
             end
         end
     end
 
     private
     def allPosts
-        return Post.where("wall_id = ? AND wall_type = ?", self.id, self.wall_type).order(created_at: :desc)
+        if self.wall_type == 'Event' then
+            return Post.where("wall_id = ? AND wall_type = ?",
+                              self.id, self.wall_type).order(created_at: :desc)
+        else
+            return Post.where("(wall_id = ? AND wall_type = ?) OR (user_id = ?)",
+                              self.id, self.wall_type, self.id).order(created_at: :desc)
+        end
     end
 end
 
