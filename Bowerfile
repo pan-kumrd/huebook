@@ -1,7 +1,6 @@
 asset 'angular'
 asset 'angular-route'
 asset 'angular-modal-service'
-asset 'bootstrap-dropdown'
 asset 'bootstrap-modal'
 # needed by eonasdan-bootstrap-datetimepicker
 asset 'moment'

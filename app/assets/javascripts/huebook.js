@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require moment
 //= require bootstrap
-//= require bootstrap-dropdown
 //= require bootstrap-modal
 //= require bootstrap-modal/js/bootstrap-modalmanager
 //= require eonasdan-bootstrap-datetimepicker
