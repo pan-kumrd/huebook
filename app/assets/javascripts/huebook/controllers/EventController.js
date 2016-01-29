@@ -12,24 +12,24 @@ function($scope, $routeParams, events, eventrsvps, walls, ModalService) {
     $scope.wallType = 'event';
 
     $scope.$on('updateEvent', function(event, args) {
-        if (args.eventId) {
+        if (args.eventId !== undefined) {
             events.get(args.eventId).then(function(resp) {
                 $scope.event = resp.event;
             });
-        } else {
+        } else if (args.event !== undefined) {
             $scope.event = args.event;
         }
     });
 
     $scope.rsvp = function(status) {
         eventrsvps.changeRsvp($scope.event.id, status).then(function(resp) {
-            $scope.$emit('updateEvent', { event: $scope.event });
+            $scope.$emit('updateEvent', { eventId: $scope.event.id });
         });
     };
 
     $scope.leave = function(status) {
         eventrsvps.leave($scope.event.id).then(function(resp) {
-            $scope.$emit('updateEvent', { event: $scope.event });
+            $scope.$emit('updateEvent', { eventId: $scope.event.id });
         });
     };
 
