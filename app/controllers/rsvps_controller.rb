@@ -1,5 +1,4 @@
-class RsvpsController < ApplicationController
-    skip_before_filter :verify_authenticity_token
+class RsvpsController < AppController
     before_action :set_event, only: [:index, :filter, :update, :leave]
     layout false
 

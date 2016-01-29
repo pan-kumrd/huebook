@@ -1,9 +1,12 @@
-
 <div class="landing-page vertical-center">
-  <div class="welcome-box">
-    <h1>Welcome to Huebook</h1>
-    <br>
-    <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-default' %>
-    <%= link_to "Sign in", new_user_session_path, class: 'btn btn-default' %>
+  <div class="welcome-box well">
+    <div class="">
+      <h1>Welcome to <span id="hb-logo-letter">H</span>uebook</h1>
+      <br>
+      <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-default btn-lg' %>
+      <%= link_to new_user_session_path, class: 'btn btn-primary btn-lg' do %>
+        <span class="glyphicon glyphicon-log-in"></span> Sign in
+      <% end %>
+    </div>
   </div>
-</div
+</div>

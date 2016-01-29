@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < AppController
     layout false
     before_action :set_user, only: [:show]
 

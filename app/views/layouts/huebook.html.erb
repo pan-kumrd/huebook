@@ -15,6 +15,10 @@
 
       <div class="btn btn-default" id="hb-new-event-btn" ng-click="createEvent()">New event</div>
 
+      <a href="<%= destroy_user_session_path %>" data-method="delete" class="btn btn-default" id="hb-logout-btn">
+        <span class="glyphicon glyphicon-log-out"></span>
+      </a>
+
       <form id="hb-search-form">
       <div id="hbsearch" class="input-group">
         <input type="text" class="form-control" id="hb-search" placeholder="Search Huebook..." ng-keydown="$event.which === 13 && search()">
@@ -23,6 +27,7 @@
         </div>
       </div>
       </form>
+
     </div>
   </div>
   <div id="body">

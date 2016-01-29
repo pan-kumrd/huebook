@@ -1,6 +1,10 @@
 class HuebookController < ApplicationController
-    layout "huebook"
+  load_and_authorize_resource
 
-    def index
-    end
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: 'Please log in first'
+  end
+
+  def index
+  end
 end

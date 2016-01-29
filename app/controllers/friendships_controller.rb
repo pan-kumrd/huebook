@@ -1,9 +1,8 @@
-class FriendshipsController < ApplicationController
-    skip_before_filter :verify_authenticity_token
+class FriendshipsController < AppController
     layout false
     before_action :set_my_friendship, only: [:reject, :accept]
     before_action :set_our_friendship, only: [:show, :unfriend]
-    
+
     # GET /friends.json
     def index
         friends = Friendship.where("initiator_id = ? OR friend_id = ?", current_user.id, current_user.id)

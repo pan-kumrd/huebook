@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
+
   get 'users' => 'users#index'
   get 'users/:id' => 'users#show'
 
@@ -50,6 +51,10 @@ Rails.application.routes.draw do
   post 'events/:eventId/invite/:userId', to: 'rsvps#invite'
   post 'events/:eventId/rsvp/:status', to: 'rsvps#update'
   delete 'events/:eventId/rsvp', to: 'rsvps#leave'
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

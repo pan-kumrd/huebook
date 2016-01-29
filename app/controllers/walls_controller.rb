@@ -1,5 +1,4 @@
-class WallsController < ApplicationController
-    skip_before_filter :verify_authenticity_token
+class WallsController < AppController
     layout false
 
     # GET /walls.json

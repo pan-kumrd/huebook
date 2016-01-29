@@ -1,4 +1,5 @@
-class SearchController < ApplicationController
+class SearchController < AppController
+    layout false
 
     # GET /search/users/:query
     def users

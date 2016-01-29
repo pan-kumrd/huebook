@@ -1,18 +1,26 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Huebook</title>
-  <%= stylesheet_link_tag    'index', media: 'all' %>
+  <%= stylesheet_link_tag    'devise', media: 'all' %>
   <%= javascript_include_tag 'index' %>
 
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="bg"></div>
+<div id="huebook">
+  <div id="top-pane">
+    <div id="top-pane-content" class="clearfix">
+      <%= link_to 'H', app_path + '#/', id: 'hblogo' %>
 
-<%= yield %>
+    </div>
+  </div>
+  <div id="bg"></div>
 
+  <%= yield %>
 
+</div>
 <script type="text/javascript">
 $(function() {
     var pos = 0;
@@ -26,6 +34,5 @@ $(function() {
     }, 70);
 });
 </script>
-
 </body>
 </html>
