@@ -1,6 +1,7 @@
 var controllers = angular.module("controllers");
-controllers.controller("EventController", [ '$scope', '$routeParams', 'events', 'eventrsvps', 'walls', 'ModalService',
-function($scope, $routeParams, events, eventrsvps, walls, ModalService) {
+controllers.controller("EventController", [ '$scope', '$rootScope', '$routeParams',
+                       'events', 'eventrsvps', 'walls', 'ModalService',
+function($scope, $rootScope, $routeParams, events, eventrsvps, walls, ModalService) {
 
     $scope.statusLabels = { 'accepted': "Yeah, I\'m in!",
                             'tentative': "Hmm, maybe?",
