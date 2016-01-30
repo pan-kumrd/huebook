@@ -1,6 +1,5 @@
 class AppController < ApplicationController
   load_and_authorize_resource
-  protect_from_forgery
   after_filter :set_csrf_cookie_for_ng
   # Turn off CSFR for XHR
   skip_before_action :verify_authenticity_token, if: :json_request?
