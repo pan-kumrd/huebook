@@ -9,9 +9,9 @@ var huebook = angular.module('huebook', [
 ]);
 
 angular.module('controllers', []);
-angular.module('services', []);
 angular.module('directives', []);
 angular.module('filters', []);
+angular.module('services', []);
 
 huebook.config(['$routeProvider',
 function($routeProvider) {
@@ -55,6 +55,8 @@ function($rootScope, $location, users, ModalService) {
     $rootScope.search = function() {
         $location.path('/search/' + $('#hb-search').val());
     };
+
+    $rootScope.currentUser = null;
 
     $rootScope.createEvent = function() {
         ModalService.showModal({

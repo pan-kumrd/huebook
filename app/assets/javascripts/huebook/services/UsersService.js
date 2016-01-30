@@ -24,7 +24,7 @@ function($q, $http, $rootScope) {
 
         currentUser: function() {
            var deferred = $q.defer();
-           if ($rootScope.currentUser !== undefined) {
+           if ($rootScope.currentUser) {
                deferred.resolve();
            } else {
                 $http.get('/users.json').success(function(result) {
