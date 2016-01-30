@@ -43,6 +43,7 @@ gem 'active_model_serializers', '~> 0.9'
 
 # Extends activerecord, support for views
 gem 'schema_plus_views'
+gem 'schema_plus_foreign_keys'
 
 
 group :development, :tests do
