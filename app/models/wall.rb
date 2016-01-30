@@ -1,4 +1,6 @@
 class Wall < ActiveRecord::Base
+    resourcify
+
     self.table_name = "walls_view"
 
     has_many :posts
