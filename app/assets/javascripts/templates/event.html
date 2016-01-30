@@ -14,7 +14,7 @@
           ng-click="rsvp('tentative')"
           ng-show="event.rsvp === null && event.organizer.id != currentUser.id">Hey, I wanna come too!</span>
 
-      <div class="btn-group" ng-show="event.rsvp !== null">
+      <div class="btn-group" ng-show="event.rsvp !== null && event.organizer.id != currentUser.id">
         <span class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
           {{ event.rsvp ? statusLabels[event.rsvp.status] : '' }} <span class="caret"></span>
         </span>
@@ -25,7 +25,7 @@
         </ul>
       </div>
       <span class="btn btn-default" type="button"
-          ng-show="event.rsvp !== null"
+          ng-show="event.rsvp !== null && event.organizer.id != currentUser.id"
           ng-click="leave()">Leave this party
       </span>
     </div>
