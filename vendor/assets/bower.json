@@ -4,7 +4,6 @@
     "angular": "latest",
     "angular-route": "latest",
     "angular-modal-service": "latest",
-    "bootstrap-dropdown": "latest",
     "bootstrap-modal": "latest",
     "moment": "latest",
     "eonasdan-bootstrap-datetimepicker": "latest"
