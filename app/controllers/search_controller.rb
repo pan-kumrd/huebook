@@ -7,7 +7,9 @@ class SearchController < AppController
         users = User.where("first_name LIKE ? OR last_name LIKE ?", q, q)
         # FIXME: Special serializer to workaround an ActiveModel bug, see
         # UserSearchSerializer for details.
-        render json: users, serializer: UserSearchSerializer, current_user: current_user, root: false
+        render json: users, serializer: UserSearchSerializer,
+                            current_user: current_user,
+                            root: false
     end
 
     # GET /search/posts/:query
