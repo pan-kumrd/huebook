@@ -1,5 +1,4 @@
 class EventRsvp < ActiveRecord::Base
-    resourcify
     enum status: [ :invited,
                    :accepted,
                    :tentative,

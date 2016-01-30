@@ -1,5 +1,4 @@
 class Friendship < ActiveRecord::Base
-    resourcify
     enum status: [ :requested,
                    :accepted ]
 
