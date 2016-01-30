@@ -31,8 +31,8 @@ class EventsController < AppController
 
     # POST /events
     def create
+        event = Event.new(post_params)
         ActiveRecord::Base.transaction do
-            event = Event.new(post_params)
             event.start = DateTime.strptime(post_params[:start], '%s')
             event.end = DateTime.strptime(post_params[:start], '%s')
             event.organizer_id = current_user.id
