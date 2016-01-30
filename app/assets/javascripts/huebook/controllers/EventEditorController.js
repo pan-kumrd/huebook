@@ -15,7 +15,7 @@ function($scope, $routeParams, events) {
         data['event']['end'] =
             moment(angular.element(document.querySelector('#hb-new-event-end-input')).val()).unix();
         events.create(data).then(function(resp) {
-            close(result, 500);
+            close(false, 500);
             $scope.go('/events/' + resp.event.id);
         });
     };
