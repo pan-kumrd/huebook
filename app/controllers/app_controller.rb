@@ -23,4 +23,8 @@ class AppController < ApplicationController
   def verified_request?
     super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
   end
+
+  def json_request?
+    request.format.json?
+  end
 end
