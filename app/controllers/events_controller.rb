@@ -31,11 +31,19 @@ class EventsController < AppController
 
     # POST /events
     def create
-        event = Event.new(post_params)
-        event.start = DateTime.strptime(post_params[:start], '%s')
-        event.end = DateTime.strptime(post_params[:start], '%s')
-        event.organizer_id = current_user.id
-        event.save
+        ActiveRecord::Base.transaction do
+            event = Event.new(post_params)
+            event.start = DateTime.strptime(post_params[:start], '%s')
+            event.end = DateTime.strptime(post_params[:start], '%s')
+            event.organizer_id = current_user.id
+            event.save
+            rsvp = EventRsvp.new()
+            rsvp.user = current_user
+            rsvp.event = event
+            rsvp.invited_by = current_user
+            rsvp.status = EventRsvp.statuses[:accepted]
+            rsvp.save
+        end
         render json: event
     end
 
