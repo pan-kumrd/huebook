@@ -35,6 +35,11 @@ body, html {
     position: relative;
 }
 
+#content {
+    min-height: 100%;
+    height: 100%;
+}
+
 #top-pane {
     width: 100%;
     background: #007143;;
@@ -87,6 +92,7 @@ body, html {
     margin-top: 10px;
     margin-bottom: 10px;
     min-height: 100%;
+    height: 100%;
 }
 
 #footer {
@@ -113,6 +119,8 @@ body, html {
 #hb-content {
     float: left;
     width: 686px; /* 70% */
+    min-height: 100%;
+    height: 100%;
 }
 
 #hb-right-pane {
@@ -263,6 +271,115 @@ body, html {
             margin: 0;
             padding: 0;
             display: inline;
+        }
+    }
+}
+
+#hb-messages-page {
+
+    min-height: 100%;
+    height: 100%;
+
+    #hb-new-message {
+
+        clear: both;
+
+        textarea {
+            width: 100%;
+        }
+
+        #send-message-btn {
+            position: relative;
+            float: right;
+        }
+    }
+
+    #hb-messages-view {
+        height: 75%;
+        overflow-y: scroll;
+        position: relative;
+    }
+
+    .message {
+        /*@extend .panel;
+        @extend .panel-default;*/
+        background-color: 'green';
+        width: 400px;
+        border: 1px solid #006E4A;
+        border-radius: 5px;
+        margin: 5px;
+        padding: 5px;
+
+        .message-heading {
+            width: 308px;
+            margin-bottom: 10px;
+
+            .message-heading-line {
+                clear: both;
+                margin: auto;
+                width: 308px;
+                height: 1px;
+                background-color: "green";
+            }
+        }
+        .message-picture {
+            position: relative;
+            vertical-align: middle;
+            text-align: center;
+            width: 80px;
+
+            img {
+                margin: auto;
+            }
+        }
+        .message-time {
+        }
+        .message-from {
+            font-weight: bold;
+        }
+        .message-body {
+            margin-top: 5px;
+            width: 320px;
+        }
+    }
+
+    .message-sent {
+        float: left;
+        clear: both;
+        background: #60D4AE;
+
+        .message-heading {
+            float: left;
+        }
+        .message-picture {
+            float: left;
+        }
+        .message-time {
+            float: right;
+        }
+        .message-from {
+            float: left;
+            text-align: left;
+        }
+    }
+
+    .message-received {
+        float: right;
+        clear: both;
+        background: #35D4A0;
+
+        .message-heading {
+            float: left;
+        }
+        .message-picture {
+            float: right;
+        }
+        .message-time {
+            float: left;
+        }
+        .message-from {
+            float: right;
+            text-align: right;
         }
     }
 }

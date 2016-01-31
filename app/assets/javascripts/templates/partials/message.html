@@ -1,0 +1,13 @@
+<div class="message {{ message.sender.id == currentUser.id ? 'message-sent' : 'message-received' }}">
+  <div class="message-picture">
+    <img ng-src="{{ message.sender.profile_picture_file_name | profilePic }}" width="60" />
+  </div>
+  <div class="message-heading">
+    <div class="message-from">{{ message.sender.first_name }} {{ message.sender.last_name }}
+    </div>
+    <div class="message-time">{{ message.created_at | parseDate }}</div>
+    <div class="message-heading-line"></div>
+  </div>
+  {{ message.text }}
+  </div>
+</div>

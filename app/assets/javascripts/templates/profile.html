@@ -18,10 +18,12 @@
       <button class="btn {{ notifications.count === 0 ? 'btn-default' : 'btn-warning' }} hb-button-wide" type="button">
         Notifications <span class="badge">{{notifications.count}}</span>
       </button>
-      <button class="btn {{ messages.count === 0 ? 'btn-default' : 'btn-warning' }} hb-button-wide" type="button">
-        Messages <span class="badge">{{messages.count}}</span>
+      <button class="btn {{ unreadMessagesCount === 0 ? 'btn-default' : 'btn-warning' }} hb-button-wide"
+              ng-click="go('/messages')"
+              type="button">
+        Messages <span class="badge" ng-show="unreadMessagesCount > 0">{{unreadMessagesCount}}</span>
       </button>
-      <button class="btn hb-button-wide" type="button" ng-click="go('/events')">
+      <button class="btn btn-default hb-button-wide" type="button" ng-click="go('/events')">
         Events
       </button>
     </div>

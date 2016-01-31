@@ -1,0 +1,29 @@
+<div id="hb-messages-page">
+  <div id="hb-content">
+    <div id="hb-messages-view" scroll="messages">
+      <message ng-repeat="message in messages"></message>
+    </div>
+    <div id="hb-new-message" ng-show="userId > 0">
+      <form ng-submit="sendMessage()">
+        <textarea name="message" ng-model="newMessage" rows="5" ng-keydown="$event.which === 13 && sendMessage()"></textarea><br/>
+        <div class="btn btn-primary" ng-click="sendMessage()" id="send-message-btn">Send</div>
+      </form>
+    </div>
+  </div>
+  <div id="hb-right-pane">
+    <table class="table table-vcenter table-hover">
+      <tr ng-repeat="conversation in conversations track by conversation.user.id"
+          ng-click="openConversation(conversation.user.id)"
+          style="cursor: pointer">
+        <td><img ng-src="{{ conversation.user.profile_picture_file_name | profilePic }}" height="40" /></td>
+        <td><span style="font-weight: {{ conversation.received_cnt - conversation.delivered_cnt > 0 ? 'bold' : 'normal' }}">
+            {{ conversation.user.first_name }} {{ conversation.user.last_name }}
+            </span><br/>
+            <span ng-show="conversation.received_cnt - conversation.delivered_cnt > 0">
+            {{ conversation.received_cnt - conversation.delivered_cnt }} unread messages
+            </span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

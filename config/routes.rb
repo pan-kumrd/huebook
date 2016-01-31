@@ -46,11 +46,16 @@ Rails.application.routes.draw do
   get  'events/my', to: 'events#myEvents'
   get  'events/:id', to: 'events#show'
   post 'events', to: 'events#create'
-    get  'events/:eventId/rsvp', to: 'rsvps#index'
+  get  'events/:eventId/rsvp', to: 'rsvps#index'
   get  'events/:eventId/rsvp/:status', to: 'rsvps#filter'
   post 'events/:eventId/invite/:userId', to: 'rsvps#invite'
   post 'events/:eventId/rsvp/:status', to: 'rsvps#update'
   delete 'events/:eventId/rsvp', to: 'rsvps#leave'
+
+  get  'messages/conversations', to: 'messages#conversations'
+  get  'messages/:id', to: 'messages#index'
+  post 'messages/send', to: 'messages#sendMsg'
+  post 'messages/:id/ack', to: 'messages#ack'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

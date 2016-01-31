@@ -1,8 +1,8 @@
 var huebook = angular.module('huebook');
-huebook.directive("eventPreview",
+huebook.directive("message",
 function() {
     return {
         restrict: 'E',
-        templateUrl: 'partials/event-preview.html'
+        templateUrl: 'partials/message.html'
     };
 });
