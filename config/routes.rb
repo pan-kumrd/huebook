@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: "sessions",
-                                    password: "passwords" }
+                                    passwords: "passwords" }
 
   get 'users' => 'users#index'
   get 'users/:id' => 'users#show'
