@@ -10,7 +10,7 @@
           {{ post.wall.name }}
         </a>
       </span>
-      on {{ post.created_at }}
+      wrote {{ post.created_at | parsePastDate }}
     </div>
     <div class="pull-right">
       <div class="dropdown">

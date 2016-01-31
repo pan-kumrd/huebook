@@ -2,7 +2,7 @@
   <div class="panel-heading" ng-click="go('/events/' + event.id)"><string><big>{{ event.name }}</big></strong></div>
   <div class="panel-body">
     <table>
-      <tr><th>When:</th><td>{{ event.start }} - {{ event.end }}</td></tr>
+      <tr><th>When:</th><td>{{ event.start | parseDate }} - {{ event.end | parseDate }}</td></tr>
       <tr><th>Where:</th><td>{{ event.location }}</td></tr>
       <tr><th>Organizer:</th><td><a ng-click="go('/profile/' + event.organizer.id)">{{ event.organizer.first_name }} {{ event.organizer.last_name }}</a></td></tr>
       <tr><th>Description:</th><td>{{ event.description | limitTo: 80 }}{{ event.description > 80 ? '...' : '' }}</td></tr>
