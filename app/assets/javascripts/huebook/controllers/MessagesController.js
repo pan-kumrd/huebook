@@ -28,7 +28,9 @@ function($scope, $routeParams, messages) {
                     $scope.messages.push(resp.messages[i]);
                 }
             }
-            messages.ack($scope.userId);
+            if (resp.messages.length > 0) {
+                messages.ack($scope.userId);
+            }
             lastMsgCheck = Math.floor(Date.now() / 1000);
         });
     }
