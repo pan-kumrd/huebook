@@ -1,12 +1,12 @@
 var controllers = angular.module('controllers');
-controllers.controller("MessagesController", [ '$scope', 'messages',
-function($scope, messages) {
+controllers.controller("MessagesController", [ '$scope', '$routeParams', 'messages',
+function($scope, $routeParams, messages) {
 
     $scope.conversations = new Array();
     $scope.messages = new Array();
 
     $scope.newMessage = ""
-    $scope.userId = 0
+    $scope.userId = ($routeParams.id ? $routeParams.id : 0);
 
     var lastMsgCheck = 0;
     var msgRefreshTimer = null;
@@ -74,4 +74,7 @@ function($scope, messages) {
 
     convRefreshTimer = setInterval(refreshConversations, 5000);
     refreshConversations();
+    if ($scope.userId > 0) {
+        $scope.openConversation($scope.userId);
+    }
 }]);

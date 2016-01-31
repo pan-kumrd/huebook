@@ -46,6 +46,11 @@ function($routeProvider) {
         controller: 'MessagesController',
         resolve: { currentUser: function(users) { return users.currentUser(); } }
       }).
+      when('/messages/:id', {
+        templateUrl: 'messages.html',
+        controller: 'MessagesController',
+        resolve: { currentUser: function(users) { return users.currentUser(); } }
+      }).
       otherwise({
         redirectTo: '/'
       });

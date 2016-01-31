@@ -54,6 +54,11 @@
            Unfriend
       </div>
 
+      <div class="btn btn-default hb-button-wide"
+           ng-click="go('/messages/' + user.id)"
+           ng-show="user.friendship !== null && user.friendship.status == 'accepted'">
+           Send Message
+      </div>
     </div>
 
     <div class="panel panel-default" 
