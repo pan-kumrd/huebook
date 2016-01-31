@@ -3,16 +3,11 @@ class MessagesController < AppController
 
     def conversations
         raw_query = "SELECT (CASE WHEN sender_id = ? THEN to_id ELSE sender_id END) AS user_id,
-                                SUM(CASE WHEN delivered = ? AND to_id = ? THEN 1 ELSE 0 END) AS delivered_cnt,
+                                SUM(CASE WHEN delivered = 't' AND to_id = ? THEN 1 ELSE 0 END) AS delivered_cnt,
                                 SUM(CASE WHEN to_id = ? THEN 1 ELSE 0 END) AS received_cnt
                          FROM messages
                          WHERE sender_id = ? OR to_id = ?
                          GROUP BY user_id"
-        if ActiveRecord::Base.connection.adapter_name == 'SQLite' then
-            deliveredValue = 't'
-        else
-            deliveredValue = 1
-        end
         query = Message.send(:sanitize_sql_array,
                              [ raw_query, current_user.id, deliveredValue, current_user.id, current_user.id, current_user.id, current_user.id ])
         results = Message.find_by_sql(query)
