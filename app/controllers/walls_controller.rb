@@ -1,5 +1,4 @@
 class WallsController < AppController
-    load_and_authorize_resource
     layout false
 
     # GET /walls.json
