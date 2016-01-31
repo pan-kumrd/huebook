@@ -57,6 +57,9 @@ function($scope, $routeParams, messages) {
     };
 
     $scope.sendMessage = function() {
+        if ($scope.newMessage == '') {
+            return;
+        }
         var msgData = {
             "message" : {
                 "text": $scope.newMessage,
