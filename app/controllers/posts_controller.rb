@@ -1,4 +1,5 @@
 class PostsController < AppController
+    load_and_authorize_resource
     before_action :set_post, only: [:show, :like, :unlike, :likes, :shares, :destroy]
     layout false
 

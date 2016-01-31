@@ -1,4 +1,5 @@
 class UsersController < AppController
+    load_and_authorize_resource
     layout false
     before_action :set_user, only: [:show]
 

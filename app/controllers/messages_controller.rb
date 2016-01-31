@@ -1,5 +1,6 @@
 class MessagesController < AppController
     layout false
+    load_and_authorize_resource
 
     def conversations
         raw_query = "SELECT (CASE WHEN sender_id = ? THEN to_id ELSE sender_id END) AS user_id,
@@ -9,7 +10,7 @@ class MessagesController < AppController
                          WHERE sender_id = ? OR to_id = ?
                          GROUP BY user_id"
         query = Message.send(:sanitize_sql_array,
-                             [ raw_query, current_user.id, deliveredValue, current_user.id, current_user.id, current_user.id, current_user.id ])
+                             [ raw_query, current_user.id, current_user.id, current_user.id, current_user.id, current_user.id ])
         results = Message.find_by_sql(query)
         render json: results, each_serializer: ConversationSerializer, root: "conversations"
     end

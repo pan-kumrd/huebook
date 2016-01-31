@@ -1,4 +1,5 @@
 class CommentsController < AppController
+    load_and_authorize_resource
     before_action :set_post_id, only: [:index, :show, :like, :unlike, :likes, :create, :destroy]
     before_action :set_comment, only: [:show, :like, :unlike, :likes, :destroy]
     layout false

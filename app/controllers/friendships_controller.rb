@@ -1,5 +1,6 @@
 class FriendshipsController < AppController
     layout false
+    load_and_authorize_resource
     before_action :set_my_friendship, only: [:reject, :accept]
     before_action :set_our_friendship, only: [:show, :unfriend]
 

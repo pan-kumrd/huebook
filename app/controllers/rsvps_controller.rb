@@ -1,4 +1,5 @@
 class RsvpsController < AppController
+    load_and_authorize_resource
     before_action :set_event, only: [:index, :filter, :update, :leave]
     layout false
 
