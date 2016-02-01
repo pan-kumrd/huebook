@@ -4,7 +4,7 @@
       <message ng-repeat="message in messages"></message>
     </div>
     <div id="hb-new-message" ng-show="userId > 0">
-      <form ng-submit="sendMessage()">
+      <form ng-submit=" sendMessage()">
         <textarea name="message" ng-model="newMessage" rows="5" ng-keydown="$event.which === 13 && sendMessage()"></textarea><br/>
         <div class="btn btn-primary" ng-click="sendMessage()" id="send-message-btn"
              ng-disabled="newMessage == ''">Send</div>

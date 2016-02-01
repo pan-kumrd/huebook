@@ -62,9 +62,17 @@ function($rootScope, $location, users, ModalService) {
         $location.path(path);
     };
 
+    //var split = $location.path().split("/");
+    //$rootScope.location = split.length > 1 ? split[1] : 'profile';
+    $rootScope.$on("$routeChangeSuccess", function() {
+        var split = $location.path().split("/");
+        $rootScope.location = split.length > 1 ? split[1] : 'profile';
+    });
+
     $rootScope.search = function() {
         $location.path('/search/' + $('#hb-search').val());
     };
+
 
     $rootScope.currentUser = null;
 
