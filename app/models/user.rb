@@ -22,12 +22,12 @@ class User < ActiveRecord::Base
 
   def friends
     return Friendship.where("(initiator_id = ? OR friend_id = ?) AND status = 1",
-                            self.id, self.id)
+                            id, id)
   end
 
   def friends?(user)
     return Friendship.where("((initiator_id = ? AND friend_id = ?) OR (initiator_id = ? AND friend_id = ?)) AND status = 1",
-                            user.id, self.id, self.id, user.id)
+                            user.id, id, id, user.id)
                      .count == 1
   end
 end
