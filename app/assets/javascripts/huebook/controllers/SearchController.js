@@ -31,6 +31,14 @@ function($scope, $routeParams, $location, posts, events, users, friends) {
             }
         }
     });
+    $scope.$on('updateEvent', function(event, args) {
+        for (var i = 0; i < $scope.events.length; i++) {
+            if ($scope.events[i].id == args.event.id) {
+                $scope.events[i] = args.event;
+                return;
+            }
+        }
+    });
 
     $scope.sendFriendRequest = function(id) {
         friends.request(id).then(function(resp) {

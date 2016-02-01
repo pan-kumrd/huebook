@@ -1,5 +1,5 @@
 <div class="hb-event-preview panel panel-default" >
-  <div class="panel-heading" ng-click="go('/events/' + event.id)"><string><big>{{ event.name }}</big></strong></div>
+  <div class="panel-heading" ng-click="go('/events/' + event.id)"><a><strong><big>{{ event.name }}</big></strong></a></div>
   <div class="panel-body">
     <table>
       <tr><th>When:</th><td>{{ event.start | parseDate }} - {{ event.end | parseDate }}</td></tr>
