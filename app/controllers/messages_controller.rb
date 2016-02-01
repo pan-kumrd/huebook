@@ -38,7 +38,7 @@ class MessagesController < AppController
 
     # POST /messages/sendMsg
     def create
-        authorize! :create
+        authorize! :create, Message
         message = Message.new(message_params)
         message.sender = current_user
         message.save
