@@ -3,7 +3,7 @@ class WallsController < AppController
 
     # GET /walls.json
     def default
-        wall = Wall.where("id = ? AND wall_type = 'User'", current_user.id).first
+        wall = Wall.defaultWall(params)
         render json: wall
     end
 
@@ -17,7 +17,7 @@ class WallsController < AppController
             # TODO: Error
         end
 
-        wall = Wall.where("id = ? AND wall_type = ?", params[:id], type).first
+        wall = Wall.wall(params[:id], type, params)
         render json: wall
     end
 end

@@ -4,6 +4,11 @@ function($scope, posts, walls) {
 
     $scope.posts = [];
 
+    var isDefaultWall = ($scope.wallId === undefined);  // could be set by parent controller
+
+    var lastCheck = 0;
+    var refreshTimer = null;
+
     $scope.$on('updatePost', function(event, args) {
         for (var i = 0; i < $scope.posts.length; i++) {
             if ($scope.posts[i].id == args.post.id) {
@@ -28,16 +33,30 @@ function($scope, posts, walls) {
 
     $scope.$on('reloadPosts', function(event, args) {
         function wallResponse(resp) {
-            wall = resp.wall
+            var wall = resp.wall
             $scope.wallId = wall.id;
             $scope.wallType = wall.wall_type;
             $scope.wallName = wall.wall_name;
-            $scope.posts = wall.posts;
+            var postsCount = $scope.posts.length;
+            for (var i = wall.posts.length - 1; i >= 0; i--) {
+                var found = false;
+                for (var j = postsCount - 1; j >= 0; j--) {
+                    if ($scope.posts[j].id == wall.posts[i].id) {
+                        $scope.posts[j] = wall.posts[i];
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    $scope.$emit('prependPosts', { posts: [ wall.posts[i] ] });
+                }
+            }
+            lastCheck = Math.floor(Date.now() / 1000);
         }
-        if ($scope.wallId) { // could be set by parent controller
-            walls.get($scope.wallType, $scope.wallId).then(wallResponse);
+        if (isDefaultWall) {
+            walls.getDefault({ 'since': lastCheck }).then(wallResponse);
         } else {
-            walls.getDefault().then(wallResponse);
+            walls.get($scope.wallType, $scope.wallId, { 'since': lastCheck }).then(wallResponse);
         }
     });
 
@@ -58,5 +77,12 @@ function($scope, posts, walls) {
     };
 
 
+    refreshTimer = setInterval(function() {
+        $scope.$emit('reloadPosts');
+    }, 30 * 1000);
     $scope.$emit('reloadPosts');
+
+    $scope.$on('$destroy', function() {
+        clearInterval(refreshTimer);
+    });
 }]);
