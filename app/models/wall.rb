@@ -10,7 +10,7 @@ class Wall < ActiveRecord::Base
     end
 
     def self.wall(wallId, wallType, params)
-        wall = Wall.where("id = ? AND wall_type = ?", walId, wallType).first
+        wall = Wall.where("id = ? AND wall_type = ?", wallId, wallType).first
         wall.instance_variable_set("@params", params)
         return wall
     end

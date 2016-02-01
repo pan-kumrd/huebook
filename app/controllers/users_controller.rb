@@ -5,11 +5,13 @@ class UsersController < AppController
 
     # GET /users
     def index
+        authorize! :index, current_user
         render json: current_user, current_user: current_user, root: 'user'
     end
 
     # GET /users/:id
     def show
+        authorize! :show, @user
         render json: @user, current_user: current_user, root: 'user'
     end
 

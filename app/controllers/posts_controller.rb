@@ -59,6 +59,8 @@ class PostsController < AppController
     # DELETE /posts/1
     # DELETE /posts/1.json
     def destroy
+        authorize! :destroy, @post
+
         @post.destroy
         respond_to do |format|
             format.json { head :no_content }

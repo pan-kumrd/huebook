@@ -3,12 +3,16 @@ class WallsController < AppController
 
     # GET /walls.json
     def default
+        authorize! :default, Wall
+
         wall = Wall.defaultWall(params)
         render json: wall
     end
 
     # GET /walls/:type/:id.json
     def show
+        authorize! :show, Wall
+
         if params[:type].downcase == 'user' then
             type = "User"
         elsif params[:type].downcase == 'event' then

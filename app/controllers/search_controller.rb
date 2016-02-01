@@ -3,6 +3,8 @@ class SearchController < AppController
 
     # GET /search/users/:query
     def users
+        authorize! :search, Search
+
         q = sprintf('%%%s%%', params[:query])
         users = User.where("LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)", q, q)
         # FIXME: Special serializer to workaround an ActiveModel bug, see
@@ -14,6 +16,8 @@ class SearchController < AppController
 
     # GET /search/posts/:query
     def posts
+        authorize! :search, Search
+
         q = sprintf('%%%s%%', params[:query])
         posts = Post.where("LOWER(text) LIKE LOWER(?)", q)
         print posts
@@ -24,6 +28,8 @@ class SearchController < AppController
 
     # GET /search/events/:query
     def events
+        authorize! :search, Search
+
         q = sprintf('%%%s%%', params[:query])
         events = Event.where("LOWER(name) LIKE LOWER(?)", q)
         render json: events, serializer: ActiveModel::ArraySerializer,

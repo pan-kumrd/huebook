@@ -42,7 +42,7 @@ class CommentsController < AppController
 
     # POST /posts/:post_id/comments.json
     def create
-        comment = Comment.new(post_params)
+        comment = Comment.new(comment_params)
         comment.post_id = @post_id
         comment.user = current_user
         comment.save
@@ -54,6 +54,8 @@ class CommentsController < AppController
 
     # DELETE /posts/:post_id/comments/:id.json
     def destroy
+        authorize! :destroy, @comment
+
         @comment.destroy
         post = Post.find(@post_id)
         post.comments_count -= 1
@@ -77,7 +79,7 @@ class CommentsController < AppController
     end
 
     # never trust parameters from the scary internet, only allow the white list through.
-    def post_params
+    def comment_params
         params.require(:comment).permit(:text)
     end
 end

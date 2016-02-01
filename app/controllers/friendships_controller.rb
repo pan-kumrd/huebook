@@ -1,8 +1,8 @@
 class FriendshipsController < AppController
     layout false
-    load_and_authorize_resource
     before_action :set_my_friendship, only: [:reject, :accept]
-    before_action :set_our_friendship, only: [:show, :unfriend]
+    before_action :set_our_friendship, only: [:show, :destroy]
+    authorize_resource
 
     # GET /friends.json
     def index
@@ -48,7 +48,7 @@ class FriendshipsController < AppController
     end
 
     # DELETE /friends/:id/unfriend
-    def unfriend
+    def destroy
         @friend.destroy
         respond_to do |format|
             format.json { head :no_content }

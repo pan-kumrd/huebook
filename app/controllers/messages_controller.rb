@@ -1,8 +1,11 @@
 class MessagesController < AppController
     layout false
-    load_and_authorize_resource
+    authorize_resource
 
-    def conversations
+    # GET /messages/conversations
+    def index
+        authorize! :index, Message
+
         raw_query = "SELECT (CASE WHEN sender_id = ? THEN to_id ELSE sender_id END) AS user_id,
                                 SUM(CASE WHEN delivered = 't' AND to_id = ? THEN 1 ELSE 0 END) AS delivered_cnt,
                                 SUM(CASE WHEN to_id = ? THEN 1 ELSE 0 END) AS received_cnt
@@ -15,7 +18,8 @@ class MessagesController < AppController
         render json: results, each_serializer: ConversationSerializer, root: "conversations"
     end
 
-    def index
+    # GET /messages/:id
+    def show
         msgs = Message.where("(sender_id = ? AND to_id = ?) OR (sender_id = ? AND to_id = ?)",
                              current_user.id, params[:id], params[:id], current_user.id)
         if params.has_key? :since then
@@ -27,24 +31,29 @@ class MessagesController < AppController
         end
 
         msgs = msgs.order(created_at: :asc)
+        msgs = msgs.accessible_by(current_ability)
         # TODO: Limit to N latest messages
         render json: msgs
     end
 
-    def sendMsg
-        message = Message.new(post_params)
+    # POST /messages/sendMsg
+    def create
+        authorize! :create
+        message = Message.new(message_params)
         message.sender = current_user
         message.save
         render json: message
     end
 
+    # POST /messages/:id/ack
     def ack
+        authorize! :ack, Message
         Message.where('sender_id = ? AND to_id = ?', params[:id], current_user.id).update_all(delivered: true)
         render json: {}
     end
 
     protected
-    def post_params
+    def message_params
         params.require(:message).permit(:text, :to_id)
     end
 end

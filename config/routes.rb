@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: { sessions: "sessions",
-                                    passwords: "passwords" }
+  devise_for :users
 
   get 'users' => 'users#index'
   get 'users/:id' => 'users#show'
@@ -42,9 +41,9 @@ Rails.application.routes.draw do
   post 'friends/:id/request', to: 'friendships#create'
   post 'friends/:id/accept', to: 'friendships#accept'
   post 'friends/:id/reject', to: 'friendships#reject'
-  delete 'friends/:id/unfriend', to: 'friendships#unfriend'
+  delete 'friends/:id/unfriend', to: 'friendships#destroy'
 
-  get  'events/my', to: 'events#myEvents'
+  get  'events/my', to: 'events#index'
   get  'events/:id', to: 'events#show'
   post 'events', to: 'events#create'
   get  'events/:eventId/rsvp', to: 'rsvps#index'
@@ -53,9 +52,9 @@ Rails.application.routes.draw do
   post 'events/:eventId/rsvp/:status', to: 'rsvps#update'
   delete 'events/:eventId/rsvp', to: 'rsvps#leave'
 
-  get  'messages/conversations', to: 'messages#conversations'
-  get  'messages/:id', to: 'messages#index'
-  post 'messages/send', to: 'messages#sendMsg'
+  get  'messages/conversations', to: 'messages#index'
+  get  'messages/:id', to: 'messages#show'
+  post 'messages/send', to: 'messages#create'
   post 'messages/:id/ack', to: 'messages#ack'
 
   if Rails.env.development?

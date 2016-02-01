@@ -6,18 +6,6 @@ class EventsController < AppController
     # GET /events
     # GET /events.json
     def index
-        events = Events.where('start >= ?', DateTime.now()).ordered(start: :asc)
-        render json: events
-    end
-
-    # GET /events/1
-    # GET /events/1.json
-    def show
-        render json: @event, serializer: FullEventSerializer, root: 'event'
-    end
-
-    # GET /events/my.json
-    def myEvents
         # FIXME: ActiveRecord is literally one of the stupidest pieces of crap
         # I had the unfortunate "luck" to ever deal with. Apparently it's OK to
         # use placeholders in WHERE conditions, but not in JOINS, because FUCK
@@ -30,12 +18,18 @@ class EventsController < AppController
         render json: events
     end
 
+    # GET /events/1
+    # GET /events/1.json
+    def show
+        render json: @event, serializer: FullEventSerializer, root: 'event'
+    end
+
     # POST /events
     def create
-        event = Event.new(post_params)
+        event = Event.new(event_params)
         ActiveRecord::Base.transaction do
-            event.start = DateTime.strptime(post_params[:start], '%s')
-            event.end = DateTime.strptime(post_params[:start], '%s')
+            event.start = DateTime.strptime(event_params[:start], '%s')
+            event.end = DateTime.strptime(event_params[:start], '%s')
             event.organizer_id = current_user.id
             event.save
             rsvp = EventRsvp.new()
@@ -65,7 +59,7 @@ class EventsController < AppController
     end
 
     # never trust parameters from the scary internet, only allow the white list through.
-    def post_params
+    def event_params
         params.require(:event).permit(:name, :description, :location, :start, :end)
     end
 end
