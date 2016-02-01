@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :posts, as: :wall
   has_many :organizer_events, class_name: 'EventRsvp', foreign_key: 'organizer_id'
   has_many :events, through: :event_rsvps
-  has_many :friends, through: :friendships
+  has_many :friendships
 
   class << self
     def current_user=(user)
@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
     def current_user
       Thread.current[:current_user]
     end
+  end
+
+  def friends
+    return Friendship.where("(initiator_id = ? OR friend_id = ?) AND status = 1",
+                            self.id, self.id)
   end
 
   def friends?(user)

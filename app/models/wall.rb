@@ -7,7 +7,9 @@ class Wall < ActiveRecord::Base
         if self.wall_type == 'Event' then
             return allPosts
         else
-            if self.id == User.current_user.id or User.current_user.friends?(User.find(self.id)) then
+            if self.id == User.current_user.id then
+                return homePosts
+            elsif User.current_user.friends?(User.find(self.id)) then
                 return allPosts
             else
                 return Post.where("user_id = ? AND private = 0", self.id).order(created_at: :desc)
@@ -16,6 +18,15 @@ class Wall < ActiveRecord::Base
     end
 
     private
+    def homePosts
+        friends = User.current_user.friends()
+        ids = friends.map { |f| f.id }
+        ids.push(User.current_user.id)
+        return Post.where("(wall_id = ? AND wall_type = 'User') OR (user_id IN (?))",
+                           self.id, ids)
+                   .order(created_at: :desc)
+    end
+
     def allPosts
         if self.wall_type == 'Event' then
             return Post.where("wall_id = ? AND wall_type = ?",
