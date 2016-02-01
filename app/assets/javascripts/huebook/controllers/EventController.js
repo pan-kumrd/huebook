@@ -68,9 +68,6 @@ function($scope, $rootScope, $routeParams, events, eventrsvps, walls, ModalServi
         events.get($routeParams.id).then(function(resp) {
             $scope.event = resp.event;
         });
-        walls.get('event', $routeParams.id).then(function(resp) {
-            $scope.posts = resp.wall.posts;
-        });
     }
 
 }]);
