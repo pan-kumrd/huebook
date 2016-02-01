@@ -99,5 +99,5 @@ Rails.application.configure do
     :domain     => ENV['SENDGRID_DOMAIN'],
     :authentication  => :plain,
     :enable_starttls_auto => true
-  }    
+  }
 end
