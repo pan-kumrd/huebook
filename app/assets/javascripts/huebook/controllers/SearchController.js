@@ -23,6 +23,15 @@ function($scope, $routeParams, $location, posts, events, users, friends) {
         }
     });
 
+    $scope.$on('updatePost', function(event, args) {
+        for (var i = 0; i < $scope.posts.length; i++) {
+            if ($scope.posts[i].id == args.post.id) {
+                $scope.posts[i] = args.post;
+                return;
+            }
+        }
+    });
+
     $scope.sendFriendRequest = function(id) {
         friends.request(id).then(function(resp) {
             for (var i = 0; i < $scope.users.length; i++) {

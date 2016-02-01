@@ -16,7 +16,7 @@
   <div class="tab-content">
     <user-preview ng-repeat="user in users | filter : { is_me: false } track by user.id" ng-show="currentTab == 'users'"></user-preview>
     <event-preview ng-repeat="event in events track by event.id" ng-show="currentTab == 'events'"></event-preview>
-    <wall-post ng-repeat="post in posts track by post.id" ng-show="currentTab == 'posts'"></wall-post>
+    <wall-post ng-repeat="post in posts track by post.id" ng-show="currentTab == 'posts'" ng-controller="PostController"></wall-post>
   </div>
 
 </div>
