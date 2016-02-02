@@ -6,12 +6,16 @@
     <div class="panel-heading"><strong><big>Whine to your friends!</big></strong></div>
     <div class="panel-body" id="hb-new-post">
       <form ng-submit="submitWallPost()" name="new-post-form">
-        <textarea id="hb-new-post-input" name="new-post-text" ng-model="newPostData.post.text"></textarea><br/>
+        <textarea id="hb-new-post-input" name="new-post-text" ng-model="newPostData.post.text"
+                  ng-disabled="submitting">
+        </textarea><br/>
         <span class="btn btn-default">
-            <input type="checkbox" value="private" id="new-post-private" name="new-post-private" checked ng-model="newPostData.post.private">
+            <input type="checkbox" value="private" id="new-post-private" name="new-post-private"
+                   checked ng-model="newPostData.post.private"
+                   ng-disabled="submitting">
             <label for="new-post-private" style="margin: 0; font-weight: normal">Private</label>
         </span>
-        <input type="submit" class="btn btn-primary" value="Post" name="new-post-submit" />
+        <input type="submit" class="btn btn-primary" value="Post" name="new-post-submit" ng-disabled="submitting" />
       </form>
     </div>
   </div>

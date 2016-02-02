@@ -3,6 +3,7 @@ controllers.controller("WallController", [ '$scope', 'posts', 'walls',
 function($scope, posts, walls) {
 
     $scope.posts = [];
+    $scope.submitting = false;
 
     var isDefaultWall = ($scope.wallId === undefined);  // could be set by parent controller
 
@@ -67,12 +68,14 @@ function($scope, posts, walls) {
     $scope.newPostData = defaultPostData();
 
     $scope.submitWallPost = function() {
+        $scope.submitting = true;
         var postData = $scope.newPostData;
         postData['post']['wall_id'] = $scope.wallId;
         postData['post']['wall_type'] = $scope.wallType;
         $scope.newPostData = defaultPostData();
         posts.create(postData).then(function(resp) {
             $scope.$emit("prependPosts", { posts: [ resp.post ] });
+            $scope.submitting = false;
         });
     };
 
