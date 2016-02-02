@@ -16,15 +16,15 @@ class Wall < ActiveRecord::Base
     end
 
     def posts
-        if self.wall_type == 'Event' then
+        if wall_type == 'Event' then
             return allPosts
         else
-            if self.id == User.current_user.id then
+            if id == User.current_user.id then
                 return homePosts
-            elsif User.current_user.friends?(User.find(self.id)) then
+            elsif User.current_user.friends?(User.find(id)) then
                 return allPosts
             else
-                return Post.where("user_id = ? AND private = 0", self.id)
+                return Post.where("user_id = ? AND private = 0", id)
                            .where("updated_at >= ?", Time.at(@params.fetch(:since, 0).to_i))
                            .order(created_at: :desc)
             end
@@ -37,20 +37,20 @@ class Wall < ActiveRecord::Base
         ids = friends.map { |f| f.id }
         ids.push(User.current_user.id)
         return Post.where("(wall_id = ? AND wall_type = 'User') OR (user_id IN (?))",
-                           self.id, ids)
+                           id, ids)
                    .where("updated_at >= ?", Time.at(@params.fetch(:since, 0).to_i))
                    .order(created_at: :desc)
     end
 
     def allPosts
-        if self.wall_type == 'Event' then
+        if wall_type == 'Event' then
             return Post.where("wall_id = ? AND wall_type = ?",
-                              self.id, self.wall_type)
+                              id, wall_type)
                        .where("updated_at >= ?", Time.at(@params.fetch(:since, 0).to_i))
                        .order(created_at: :desc)
         else
             return Post.where("(wall_id = ? AND wall_type = ?) OR (user_id = ?)",
-                              self.id, self.wall_type, self.id)
+                              id, wall_type, id)
                        .where("updated_at >= ?", Time.at(@params.fetch(:since, 0).to_i))
                        .order(created_at: :desc)
         end
