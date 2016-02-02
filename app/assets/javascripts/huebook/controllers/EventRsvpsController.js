@@ -1,6 +1,8 @@
 var controllers = angular.module('controllers');
-controllers.controller("EventRsvpsController", [ '$scope', '$location', 'eventId', 'status', 'statusLabels', 'eventrsvps',
-function($scope, $location, eventId, status, statusLabels, eventrsvps) {
+controllers.controller("EventRsvpsController", [ '$scope', '$location', 'eventId',
+                                                 'status', 'statusLabels', 'eventrsvps',
+                                                 'close',
+function($scope, $location, eventId, status, statusLabels, eventrsvps, close) {
 
     $scope.eventId = eventId;
     $scope.status = status;

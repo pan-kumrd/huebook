@@ -1,6 +1,7 @@
 var controllers = angular.module('controllers');
-controllers.controller("PostInteractionController", [ '$scope', '$location', 'postId', 'action', 'postInteractions',
-function($scope, $location, postId, action, postInteractions) {
+controllers.controller("PostInteractionController", [ '$scope', '$location', 'postId',
+                                                      'action', 'postInteractions', 'close',
+function($scope, $location, postId, action, postInteractions, close) {
 
     $scope.postId = postId;
     $scope.action = action;

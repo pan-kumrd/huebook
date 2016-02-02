@@ -1,6 +1,6 @@
 var controllers = angular.module('controllers');
-controllers.controller("EventEditorController", [ '$scope', '$routeParams', 'events',
-function($scope, $routeParams, events) {
+controllers.controller("EventEditorController", [ '$scope', '$routeParams', 'events', 'close',
+function($scope, $routeParams, events, close) {
 
     $scope.newEventData = {};
 
