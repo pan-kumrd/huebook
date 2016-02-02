@@ -5,7 +5,7 @@
       <a ng-click="go('/profile/' + post.user.id)">
         {{ post.user.first_name }} {{ post.user.last_name }}
       </a>
-      <span ng-show="wallType == 'User' && post.user.id != post.wall.id">
+      <span ng-show="wallType == 'User' && (post.user.id != post.wall.id || post.wall.type == 'Event')">
         &#8227; <a ng-click="go((post.wall.type == 'user' ? 'profile' : 'events') + '/' + post.wall.id)">
           {{ post.wall.name }}
         </a>
