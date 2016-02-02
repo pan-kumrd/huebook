@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby "2.1.5"
 
 gem 'rails', '4.2.3'
 
@@ -56,3 +55,6 @@ group :development, :tests do
   gem 'letter_opener'
   gem 'letter_opener_web'
 end
+
+# Improve logging on prod
+gem 'rails_12factor', group: :production
