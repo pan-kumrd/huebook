@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   def friends
     return User.where("id IN (SELECT CASE WHEN initiator_id = ? THEN friend_id ELSE initiator_id END 
-                              FROM Friendship
+                              FROM Friendships
                               WHERE (initiator_id = ? OR friend_id = ?) AND status = 1)",
                       id, id, id)
   end
