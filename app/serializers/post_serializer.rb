@@ -5,7 +5,7 @@ class PostSerializer < ActiveModel::Serializer
                :wall,
                :created_at,
                :updated_at,
-               :attacment_url,
+               :attachment_url,
                :attachment_type,
                :orig_post,
                :likes_count,

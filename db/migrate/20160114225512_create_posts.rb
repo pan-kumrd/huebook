@@ -8,7 +8,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string  :wall_type,         null: false, default: ""
 
       t.integer :attachment_type,   null: true
-      t.string  :attacment_url,     null: true
+      t.string  :attachment_url,     null: true
 
       t.integer :likes_count,       null: false, default: 0
       t.integer :shares_count,      null: false, default: 0
