@@ -4,6 +4,7 @@ function($scope, posts, comments, ModalService) {
 
     $scope.commentsVisible = false;
     $scope.comments = [];
+    $scope.submittingComment = false;
 
     $scope.toggleComments = function() {
         $scope.commentsVisible = !$scope.commentsVisible;
@@ -97,12 +98,13 @@ function($scope, posts, comments, ModalService) {
     $scope.newCommentData = defaultCommentData();
 
     $scope.submitComment = function() {
+        $scope.submittingComment = true;
         var commentData = $scope.newCommentData;
         $scope.newCommentData = defaultCommentData();
         comments.create($scope.post.id, commentData).then(function(resp) {
             $scope.comments.push(resp.comment);
             $scope.$emit('updatePost', { post: resp.post });
-            $scope.apply;
+            $scope.submittingComment = false;
         });
     };
 

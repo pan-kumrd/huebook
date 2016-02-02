@@ -48,8 +48,12 @@
               <div class="panel-heading">New comment</div>
               <div class="panel-body">
                 <form ng-submit="submitComment()" name="new-comment-form">
-                <textarea id="hb-new-comment-input" name="new-comment-text" ng-model="newCommentData.comment.text"></textarea><br/>
-                <input type="submit" class="btn btn-primary" value="Post" name="new-comment-submit" />
+                <textarea id="hb-new-comment-input" name="new-comment-text"
+                          ng-model="newCommentData.comment.text"
+                          ng-disabled="submittingComment"></textarea><br/>
+                <input type="submit" class="btn btn-primary" value="Post"
+                       name="new-comment-submit"
+                       ng-disabled="submittingComment" />
                 </form>
               </div>
             </div>
